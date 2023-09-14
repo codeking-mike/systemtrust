@@ -16,7 +16,7 @@
               
             <p class="text-warning">{{session('message')}}</p>
             @endif
-            <form action="/users/{{$emp->id}}" method="POST" enctype="multipart/form-data">
+            <form action="/update/{{$emp->id}}" method="POST" enctype="multipart/form-data">
               @csrf
               @method('PUT')
             <div class="row">

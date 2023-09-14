@@ -38,10 +38,10 @@
                     <td>
                       <div class="d-flex px-2 py-1">
                         <div>
-                          @if ($emp->profile_pic == '')
+                          @if ($emp->profilepic == '')
                           <img src="assets/img/team-2.jpg" class="avatar avatar-sm me-3" alt="user1"> 
                           @else
-                          <img src="{{$emp['profile_pic']}}" class="avatar avatar-sm me-3" alt="user1">
+                          <img src="storage/{{$emp['profilepic']}}" class="avatar avatar-sm me-3" alt="user1">
                           @endif
                           
                         </div>
@@ -52,15 +52,17 @@
                       </div>
                     </td>
                     <td>
-                      <p class="text-xs font-weight-bold mb-0">{{$emp['job_description']}}</p>
+                      <p class="text-xs font-weight-bold mb-0">{{$emp['position']}}</p>
                     </td>
                    
                     <td class="align-middle text-center">
                       <span class="text-secondary text-xs font-weight-bold">{{$emp['staff_dob']}}</span>
                     </td>
                     <td class="align-middle">
-                      <a href="/edituser/{{$emp['id']}}" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
+                      <a href="/edituser/{{$emp['id']}}" class="btn btn-success" data-toggle="tooltip" data-original-title="Edit user">
                         Edit
+                      </a> /  <a href="/deleteuser/{{$emp['id']}}" class="btn btn-danger" data-toggle="tooltip" data-original-title="Edit user">
+                        Delete
                       </a>
                     </td>
                   </tr>

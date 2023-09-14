@@ -15,10 +15,19 @@ class UserController extends Controller
         ]);
     }
 
-    public function show(User $user){
+    public function show($id){
+        $user = User::find($id);
         return view('users.show', [
             'emp'=> $user,
             'title'=>'Edit User'
+        ]);
+    }
+
+    public function profile($id){
+        $user = User::find($id);
+        return view('users.profile', [
+            'emp'=> $user,
+            'title'=>'Edit Profile'
         ]);
     }
     public function create(){
@@ -59,6 +68,74 @@ class UserController extends Controller
 
         
     }
+
+    public function update(Request $request, $id){
+        $user = User::find($id);
+        $formFields = $request->validate([
+            'name'=> ['required', 'min:3' ],
+            'email'=> ['required', 'email'],
+            'phone'=> ['required', 'min:11' ],
+            'address'=>'required',
+            'staff_dob'=> 'required',
+            'marital_status'=>'required',
+
+        ]);
+
+
+
+        //upload profilepic
+        if($request->hasFile('profilepic')){
+            $formFields['profilepic'] = $request->file('profilepic')->store('userimages', 'public');
+        }
+
+        //create user 
+        $user->update($formFields);
+
+        //login user automatically
+       // auth()->login($user);
+
+        return back()->with('message', 'Details updated successfully!');
+
+
+        
+    }
+
+    public function update2(Request $request, $id){
+        $user = User::find($id);
+        $formFields = $request->validate([
+            'name'=> ['required', 'min:3' ],
+            'phone'=> ['required', 'min:11' ],
+            'address'=>'required',
+            'staff_dob'=> 'required',
+            'marital_status'=>'required'
+
+        ]);
+
+
+
+        //upload profilepic
+        if($request->hasFile('profilepic')){
+            $formFields['profilepic'] = $request->file('profilepic')->store('userimages', 'public');
+        }
+
+        $user->name = $formFields['name'];
+        $user->phone = $formFields['phone'];
+        $user->address = $formFields['address'];
+        $user->staff_dob = $formFields['staff_dob'];
+        $user->marital_status = $formFields['marital_status'];
+        //create user 
+        $user->update();
+
+        //login user automatically
+       // auth()->login($user);
+
+        return back()->with('message', 'Details updated successfully!');
+
+
+        
+    }
+
+
 
     //Log out
 

@@ -12,14 +12,18 @@
             </div>
           </div>
           <div class="card-body">
-            
-            <form action="/machine/update" method="post">
+            @if (session()->has('message'))
+              
+            <p class="text-warning">{{session('message')}}</p>
+            @endif
+            <form action="/machine/{{$machine->id}}" method="post">
                 @csrf
+                @method('PUT')
               <div class="row">
                 <div class="col-md-12">
                     <div class="form-group">
                         <label for="" class="form-control-lable">Branch Code</label>
-                        <input type="text" name="branch_code" class="form-control" value="{{$machine->branch_code}}">
+                        <input type="text" name="branch_code" class="form-control" value="{{$machine->branch_code}}" readonly>
 
                     </div>
                 </div>
@@ -27,13 +31,13 @@
                     <div class="form-group col-md-5">
                         <label for="example-text-input" class="form-control-label">BM Name</label>
                         
-                        <input type="text" name="bm_name" class="form-control" value="{{$machine->bm_name}}">
+                        <input type="text" name="bm_name" class="form-control" value="{{$machine->bm_name}}" readonly>
                        
                     </div>
                     <div class="form-group col-md-5">
                       <label for="example-text-input" class="form-control-label">BM Number</label>
                       
-                      <input type="text" name="bm_number" class="form-control" value="{{$machine->bm_number}}">
+                      <input type="text" name="bm_number" class="form-control" value="{{$machine->bm_number}}" readonly>
                      
                     </div>
                     
@@ -42,13 +46,13 @@
                     <div class="form-group col-md-5">
                         <label for="example-text-input" class="form-control-label">Branch Location</label>
                         
-                        <input type="text" name="branch_address" class="form-control" value="{{$machine->branch_address}}">
+                        <input type="text" name="branch_address" class="form-control" value="{{$machine->branch_address}}" readonly>
                        
                     </div>
                     <div class="form-group col-md-5">
                       <label for="example-text-input" class="form-control-label">State</label>
                       
-                      <input type="text" name="branch_state" class="form-control" value="{{$machine->branch_code}}">
+                      <input type="text" name="branch_state" class="form-control" value="{{$machine->branch_code}}" readonly>
                       
                     </div>
                     
@@ -56,7 +60,7 @@
                 <div class="col-md-12">
                     <div class="form-group">
                       <label for="example-text-input" class="form-control-label">FSE</label>
-                      <input type="text" name="fse_assigned" class="form-control" value="{{$machine->fse_assigned}}">
+                      <input type="text" name="fse_assigned" class="form-control" value="{{$machine->fse_assigned}}" readonly>
                 
                      
                     </div>
@@ -88,7 +92,7 @@
                     <div class="form-group col-md-5">
                       <label for="example-text-input" class="form-control-label">SNMP Status</label>
                       
-                      
+                      <input type="text" name="snmp_status" class="form-control" value="{{$machine->snmp_status}}">
                      
                     </div>
                     

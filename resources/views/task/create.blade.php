@@ -74,7 +74,7 @@
                     <label for="example-text-input" class="form-control-label">Assign FSE</label>
                     <select name='fse_assigned' class="form-control">
                       @foreach ($users as $fse)
-                         @if ($fse->job_description == 'engineer')
+                         @if ($fse->position == 'engineer')
                          <option>{{$fse->name}}</option>  
                          @endif 
                       @endforeach

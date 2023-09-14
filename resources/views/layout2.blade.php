@@ -102,6 +102,11 @@
     </div>
     <hr class="horizontal dark mt-0">
     <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
+
+      @if (auth()->user()->role == 'admin')
+          
+     
+      <!-- admin navigation bar -->
       <ul class="navbar-nav">
         <li class="nav-item">
           <a class="nav-link active" href="/dashboard">
@@ -151,6 +156,14 @@
             <span class="nav-link-text ms-1">Today's Attendance</span>
           </a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link " href="/attendance/history">
+            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="ni ni-app text-info text-sm opacity-10"></i>
+            </div>
+            <span class="nav-link-text ms-1">My Attendance</span>
+          </a>
+        </li>
        
        
         <li class="nav-item">
@@ -190,6 +203,97 @@
         </li>
         
       </ul>
+   @else
+      <!-- user navigation bar -->
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link active" href="/dashboard">
+            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
+            </div>
+            <span class="nav-link-text ms-1">Dashboard</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link " href="/profile/{{auth()->user()->id}}">
+            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="ni ni-calendar-grid-58 text-warning text-sm opacity-10"></i>
+            </div>
+            <span class="nav-link-text ms-1">My Profile</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link " href="/machine/list">
+            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="ni ni-app text-info text-sm opacity-10"></i>
+            </div>
+            <span class="nav-link-text ms-1">Machine List</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link " href="/attendance/history">
+            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="ni ni-app text-info text-sm opacity-10"></i>
+            </div>
+            <span class="nav-link-text ms-1">My Attendance</span>
+          </a>
+        </li>
+        
+        <li class="nav-item">
+          <a class="nav-link " href="/tasks/list">
+            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="ni ni-credit-card text-success text-sm opacity-10"></i>
+            </div>
+            <span class="nav-link-text ms-1">My Tasks</span>
+          </a>
+        </li>
+       
+        <li class="nav-item">
+          <a class="nav-link " href="/expenses/send">
+            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="ni ni-world-2 text-danger text-sm opacity-10"></i>
+            </div>
+            <span class="nav-link-text ms-1">Submit Expenses</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link " href="/reports/send">
+            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="ni ni-world-2 text-danger text-sm opacity-10"></i>
+            </div>
+            <span class="nav-link-text ms-1">Submit Reports</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link " href="/leave/apply">
+            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="ni ni-world-2 text-danger text-sm opacity-10"></i>
+            </div>
+            <span class="nav-link-text ms-1">Leave Management</span>
+          </a>
+        </li>
+        <li class="nav-item mt-3">
+          <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Settings</h6>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link " href="/settings">
+            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="ni ni-single-02 text-dark text-sm opacity-10"></i>
+            </div>
+            <span class="nav-link-text ms-1">Settings</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link " href="/logout">
+            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="ni ni-single-copy-04 text-warning text-sm opacity-10"></i>
+            </div>
+            <span class="nav-link-text ms-1">Log Out</span>
+          </a>
+        </li>
+        
+      </ul>
+      @endif
     </div>
    
     

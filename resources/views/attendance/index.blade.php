@@ -101,7 +101,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  @foreach ($employees as $employee)
+                  @foreach ($todayAttendance as $employee)
                       
                 
                   <tr>
@@ -115,10 +115,8 @@
                       </div>
                     </td>
                     <td>
-                      @php
-                          $td = date('g:i a', time());
-                      @endphp
-                      <p class="text-xs font-weight-bold mb-0">{{$td }}</p>
+                     
+                      <p class="text-xs font-weight-bold mb-0">{{$employee->time_in }}</p>
                       
                     </td>
                     <td>

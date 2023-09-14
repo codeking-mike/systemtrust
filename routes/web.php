@@ -54,9 +54,13 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('aut
 //user CRUD routing
 Route::get('/users', [UserController::class, 'index'])->middleware('auth');
 Route::get('/users/create', [UserController::class, 'create'])->middleware('auth');
-Route::get('/edituser/{user}', [UserController::class, 'show'])->middleware('auth');
+Route::get('/edituser/{id}', [UserController::class, 'show'])->middleware('auth');
+Route::get('/profile/{id}', [UserController::class, 'profile'])->middleware('auth');
 //submit form post data to create new user
 Route::post('/users', [UserController::class, 'store']);
+//update user details 
+Route::put('/users/{user}', [UserController::class, 'update']);
+Route::put('/update/{id}', [UserController::class, 'update2']);
 //user logout
 Route::get('/logout', [UserController::class, 'logout'])->middleware('auth');
 //user logout
@@ -71,18 +75,34 @@ Route::get('/brands', [BrandController::class, 'index'])->middleware('auth');
 //task CRUD routing
 Route::get('/tasks', [TaskController::class, 'index'])->middleware('auth');
 Route::get('/tasks/create', [TaskController::class, 'create'])->middleware('auth');
-Route::get('/taskview/{task}', [TaskController::class, 'show'])->middleware('auth');
+Route::get('/taskview/{id}', [TaskController::class, 'show'])->middleware('auth');
 Route::get('/tasks/completed', [TaskController::class, 'completed'])->middleware('auth');
+Route::put('/tasks/{id}', [TaskController::class, 'update']);
+Route::get('/tasks/list', [TaskController::class, 'list']);
+Route::get('/submittask/{id}', [TaskController::class, 'submitreport']);
+Route::put('/tasks/{id}/report', [TaskController::class, 'report']);
+Route::get('/taskreport/{id}', [TaskController::class, 'viewreport']);
 
 //machine routing
 Route::get('/machine', [MachineController::class, 'index'])->middleware('auth');
 Route::get('/machine/create', [MachineController::class, 'create'])->middleware('auth');
-Route::get('/editmachine/{machine}', [MachineController::class, 'show'])->middleware('auth');
+Route::get('/machine/list', [MachineController::class, 'list'])->middleware('auth');
+Route::put('/machine/{id}', [MachineController::class, 'update']);
+Route::get('/editmachine/{id}', [MachineController::class, 'show'])->middleware('auth');
+
+
 Route::get('/solarmachines', [SolarmachineController::class, 'index'])->middleware('auth');
 Route::get('/solarmachines/create', [SolarmachineController::class, 'create'])->middleware('auth');
+Route::get('/solarmachines/list', [SolarmachineController::class, 'list'])->middleware('auth');
+Route::get('/editsolar/{id}', [SolarmachineController::class, 'show'])->middleware('auth');
+Route::put('/solarmachines/{id}', [SolarmachineController::class, 'update']);
+
 Route::get('/ups', [UpsController::class, 'index'])->middleware('auth');
 Route::get('/ups/create', [UpsController::class, 'create'])->middleware('auth');
-Route::get('/editups/{ups}', [UpsController::class, 'show'])->middleware('auth');
+Route::get('/editups/{id}', [UpsController::class, 'show'])->middleware('auth');
+Route::get('/ups/list', [UpsController::class, 'list'])->middleware('auth');
+Route::put('/ups/{id}', [UpsController::class, 'update']);
+
 
 //expenses routing
 Route::get('/expenses', [ExpenseController::class, 'index'])->middleware('auth');
@@ -91,8 +111,9 @@ Route::get('/expenses/create', [ExpenseController::class, 'create'])->middleware
 
 //attendance sign-in
 Route::get('/attendance', [AttendanceController::class, 'index'])->middleware('auth');
+Route::get('/attendance/history', [AttendanceController::class, 'history'])->middleware('auth');
 Route::post('/attendance/checkin', [AttendanceController::class, 'checkin']);
-
+Route::put('/attendance/{attn}', [AttendanceController::class, 'checkout']);
 
 //submit form post data to controller
 Route::post('/clients', [ClientController::class, 'store']);

@@ -80,7 +80,7 @@
                           
                       </td>
                       <td class="align-middle">
-                         <a class="text-primary text-sm" href="/taskview/{{$tsk['id']}}">View Task</a>
+                         <a class="btn btn-success" href="/taskreport/{{$tsk['id']}}">View Report</a>
                         
                       </td>
                     </tr>

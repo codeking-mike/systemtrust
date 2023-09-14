@@ -55,8 +55,9 @@ class SolarmachineController extends Controller
 
     }
 
-    public function show(Machine $machine){
-        return view('machine.show', [
+    public function show($id){
+        $machine = Solarmachine::find($id);
+        return view('solarmachines.show', [
             'title'=>'View Machine',
             'machine'=>$machine
             
@@ -69,5 +70,49 @@ class SolarmachineController extends Controller
             'title'=>'Add Machine'
         ]);
     }
+
+    public function list(){
+        $exp = explode(' ', auth()->user()->name);
+        $fname = $exp[0];
+        return view('solarmachines.list', [
+            'title' => 'Solar Sites',
+            'mymachines'=> Solarmachine::where('fse_assigned', $fname)->paginate(60),
+            'mynonsolar'=>$count=Machine::where('fse_assigned', $fname)->count(),
+            'mysolar'=>$count=Solarmachine::where('fse_assigned', $fname)->count(),
+            'myups'=>$count=Upsmachine::where('fse_assigned', $fname)->count(),
+        ]);
+    }
+
+    //update machines
+
+    public function update(Request $request, $id){ 
+        
+        $machine = Solarmachine::find($id);
+          $machine->remarks = $request->input('remarks');
+          $machine->inverter_brand = $request->input('inverter_brand');
+           $machine->inverter_capacity = $request->input('inverter_capacity');
+          
+          $machine->snmp_status = $request->input('snmp_status');
+          $machine->battery_spec = $request->input('battery_spec');
+          $machine->battery_qty = $request->input('battery_qty');
+          $machine->battery_brand = $request->input('battery_brand');
+          $machine->number_of_atms = $request->input('number_of_atms');
+          $machine->solarpanel_type = $request->input('solarpanel_type');
+          $machine->solarpanel_capacity = $request->input('solarpanel_capacity');
+          $machine->solarpanel_number = $request->input('solarpanel_number');
+          $machine->charge_controller = $request->input('charge_controller');
+          $machine->number_of_inverter = $request->input('charge_controller');
+          $machine->date_inverter_deployed = $request->input('date_inverter_deployed');
+          $machine->inverter_age = $request->input('inverter_age');
+          $machine->last_battery_replaced = $request->input('last_battery_replaced');
+          $machine->inverter_deployed_by = $request->input('inverter_deployed_by');
+
+        $machine->update();
+        return back()->with('message', 'Details updated successfully!');
+        
+      
+  
+      }
+  
 
 }

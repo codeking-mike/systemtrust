@@ -10,7 +10,7 @@
               <h6>Pending Tasks</h6>
               <div class="d-flex align-items-center">
                 
-                <a class=" btn btn-primary btn-sm ms-auto" href="/tasks/create">Create Task</a>
+                
                 <a class=" btn btn-danger btn-sm ms-auto" href="/tasks/completed">View Completed Task</a>
               
               </div>
@@ -26,7 +26,6 @@
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Description</th>
                       
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Location</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">FSE Assigned</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Status</th>
 
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Action</th>
@@ -36,7 +35,7 @@
                   <tbody>
                    
                      @foreach ($task as $tsk)
-                     @unless ($tsk['task_status']== 'completed')
+                    
                      <tr>
                       <td>
                         <span class="text-xs font-weight-bold mb-0">{{$tsk['task_type']}}</span>
@@ -48,9 +47,7 @@
                       <td>
                         <span class="text-xs font-weight-bold">{{$tsk['location']}}</span>
                       </td>
-                      <td>
-                        <span class="text-xs font-weight-bold">{{$tsk['fse_assigned']}}</span>
-                      </td>
+                    
                       <td>
                         
                           
@@ -58,14 +55,12 @@
                           
                       </td>
                       <td class="align-middle">
-                         <a class="btn btn-success" href="/taskview/{{$tsk['id']}}">View Task</a> / 
-                         <a class="btn btn-danger" href="/delete/{{$tsk['id']}}">Delete</a>
+                         <a class="btn btn-success" href="/submittask/{{$tsk['id']}}">Submit Report</a>
                         
                       </td>
                     </tr>
-                   
                     
-                    @endunless
+                    
                     @endforeach
                                                   
                        

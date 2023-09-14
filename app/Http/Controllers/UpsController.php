@@ -47,20 +47,61 @@ class UpsController extends Controller
       
   
       }
+      public function update(Request $request, $id){
+        $machine = Upsmachine::find($id);
+
+        $machine->remarks = $request->input('remarks');
+        $machine->ups_brand = $request->input('ups_brand');
+        $machine->ups_capacity = $request->input('ups_capacity');
+        $machine->number_of_batteries = $request->input('number_of_batteries');
+        $machine->snmp_status = $request->input('snmp_status');
+        $machine->battery_capacity = $request->input('battery_capacity');
+        $machine->battery_brand = $request->input('battery_brand');
+        $machine->load = $request->input('load');
+        $machine->year_of_installation = $request->input('year_of_installation');
+        $machine->serial_number = $request->input('serial_number');
+
+        //update machine record
+        $machine->update();
+
+        //login user automatically
+       // auth()->login($user);
+
+        return back()->with('message', 'Details updated successfully!');
+
+
+        
+    }
+
   
-      public function show(Upsmachine $machine){
+      public function show($id){
+
+    $ups = Upsmachine::find($id);
         return view('ups.show', [
               'title'=>'View Machine',
-              'machine'=>$machine
+              'ups'=>$ups
               
-  
           ]); 
       }
+
+
       public function create(){
           return view('ups.create', [
               'users'=> User::latest()->get(),
               'title'=>'Add UPS Machine'
           ]);
       }
+
+      public function list(){
+        $exp = explode(' ', auth()->user()->name);
+        $fname = $exp[0];
+        return view('ups.list', [
+            'title' => 'UPS Sites',
+            'mymachines'=> Upsmachine::where('fse_assigned', $fname)->paginate(60),
+            'mynonsolar'=>$count=Machine::where('fse_assigned', $fname)->count(),
+            'mysolar'=>$count=Solarmachine::where('fse_assigned', $fname)->count(),
+            'myups'=>$count=Upsmachine::where('fse_assigned', $fname)->count(),
+        ]);
+    }
   
 }

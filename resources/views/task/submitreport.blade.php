@@ -7,7 +7,7 @@
         <div class="card">
           <div class="card-header pb-0">
             <div class="d-flex align-items-center">
-              <p class="mb-0">Edit Task</p>
+              <p class="mb-0">Submit Report</p>
               
             </div>
           </div>
@@ -16,7 +16,7 @@
               
             <p class="text-success">{{session('message')}}</p>
             @endif
-            <form action="/tasks/{{$task->id}}" method="post">
+            <form action="/tasks/{{$task->id}}/report" method="post" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
               <div class="row">
@@ -27,16 +27,7 @@
                    
                   </div>
                 </div>
-                <div class="col-md-12">
-                    <div class="form-group">
-                      <label for="example-text-input" class="form-control-label">Location</label>
-                      
-                      <input type="text" name="location" class="form-control" value="{{$task->location}}">
-                      @error('location')
-                          <span class="text-danger">{{$message}}</span>
-                      @enderror
-                    </div>
-                  </div>
+                
                   <div class="col-md-12">
                     <div class="form-group">
                       <label for="example-text-input" class="form-control-label">Task Type</label>
@@ -88,11 +79,36 @@
                   <span class="text-danger">{{$message}}</span>
               @enderror
                 </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                      <label for="example-text-input" class="form-control-label">Remarks/Observation/Recommendation</label>
+                      <textarea class="form-control" name="remarks">{{$task->remarks}}</textarea>
+                     
+                    </div>
+                    @error('task_description')
+                    <span class="text-danger">{{$message}}</span>
+                @enderror
+                  </div>
                 
                 <div class="col-md-12">
                   <div class="form-group">
-                    <label for="example-text-input" class="form-control-label">Assigned FSE</label>
-                    <input type="text" name="fse_assigned" class="form-control" value="{{$task->fse_assigned}}" />
+                    <label for="example-text-input" class="form-control-label">Upload JCC</label>
+                    <input type="file" name="jcc" class="form-control" value=""  />
+                    <div class="col-md-4">
+                        <div class="card">
+                          <img class="card-img-top" src="/storage/{{$task->jcc}}" alt="">
+                        </div>
+                      </div>
+                   
+                  </div>
+                  <div class="form-group">
+                    <label for="example-text-input" class="form-control-label">Upload ERF</label>
+                    <input type="file" name="erf" class="form-control" />
+                    <div class="col-md-4">
+                        <div class="card">
+                          <img class="card-img-top" src="/storage/{{$task->erf}}" alt="">
+                        </div>
+                      </div>
                    
                   </div>
                 </div>
@@ -123,21 +139,14 @@
                          
                     </div>
                 </div>
-                <div class="col-md-12">
-                  <div class="form-group">
-                    <label for="" class="form-contol-lable">Remarks</label>
-                    <textarea name="remarks" id="" cols="7" rows="5" class="form-control">
-                      {{$task->remarks}}
-                    </textarea>
-                  </div>
-                </div>
+                
                 
                 
                 
                 <div class="col-md-12">
                   <div class="form-group">
                                       
-                    <input type="submit" name="update" class="btn btn-lg btn-danger" value="Update Task">
+                    <input type="submit" name="update" class="btn btn-lg btn-danger" value="Submit Report">
                   </div>
                 </div>
               </div>
