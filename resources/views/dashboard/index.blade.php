@@ -233,13 +233,140 @@
           
         </div>
         <div class="row mt-4">
-          
-          <div class="col-lg-5">
-            <div class="card">
-              <div class="card-header pb-0 p-3">
-                <h6 class="mb-0"></h6>
+       @if (auth()->user()->role == 'admin')
+           
+        
+          <div class="row">
+            <div class="col-12">
+              <div class="card mb-4">
+                <div class="card-header pb-0">
+                  <h6>Todays Attendance</h6>
+                </div>
+                <div class="card-body px-0 pt-0 pb-2">
+                  <div class="table-responsive p-0">
+                    <table class="table align-items-center mb-0">
+                      <thead>
+                        <tr>
+                          <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Employee</th>
+                          <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Time-in</th>
+                          
+                          <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Total Hours</th>
+                          
+                        </tr>
+                      </thead>
+                      <tbody>
+                        @foreach ($todayAttendance as $employee)
+                            
+                      
+                        <tr>
+                          <td>
+                            <div class="d-flex px-2 py-1">
+                              
+                              <div class="d-flex flex-column justify-content-center">
+                                <h6 class="mb-0 text-sm">{{$employee->staff_name }}</h6>
+                                
+                              </div>
+                            </div>
+                          </td>
+                          <td>
+                           
+                            <p class="text-xs font-weight-bold mb-0">{{$employee->time_in }}</p>
+                            
+                          </td>
+                          <td>
+                            @php
+                                
+                            @endphp
+                            <p class="text-xs font-weight-bold mb-0">{{$employee->time_out }}</p>
+                            
+                          </td>
+                          
+                         
+                         
+                        </tr>
+                        @endforeach
+                        
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
               </div>
-               </div>
+            </div>
           </div>
+     @else
+          <div class="row">
+            <div class="col-12">
+              <div class="card mb-4">
+                <div class="card-header pb-0">
+                  <h6>Pending Tasks</h6>
+                  
+                 
+                </div> 
+                <div class="card-body px-0 pt-0 pb-2">
+                  <div class="table-responsive p-0">
+                    <table class="table align-items-center justify-content-center mb-0">
+                      <thead>
+                        <tr>
+                          
+                          <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Task</th>
+                          <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Description</th>
+                          
+                          <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Location</th>
+                          <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Status</th>
+    
+                          <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Action</th>
+                          
+                        </tr>
+                      </thead>
+                      <tbody>
+                       
+                         @foreach ($tasklist as $tsk)
+                        
+                         <tr>
+                          <td>
+                            <span class="text-xs font-weight-bold mb-0">{{$tsk['task_type']}}</span>
+                            
+                          </td>
+                          <td>
+                            <p class="text-xs font-weight-bold mb-0">{{$tsk['task_description']}}</p>
+                          </td>
+                          <td>
+                            <span class="text-xs font-weight-bold">{{$tsk['location']}}</span>
+                          </td>
+                        
+                          <td>
+                            
+                              
+                              <span class="text-xs font-weight-bold">{{$tsk['task_status']}}</span>
+                              
+                          </td>
+                          <td class="align-middle">
+                             <a class="btn btn-success" href="/submittask/{{$tsk['id']}}">Submit Report</a>
+                            
+                          </td>
+                        </tr>
+                        
+                        
+                        @endforeach
+                                                      
+                           
+                                
+                          
+                       
+                        
+                        
+                           
+                         
+                           
+                        
+                          
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          @endif 
         </div>
 @endsection
