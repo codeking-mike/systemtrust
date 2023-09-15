@@ -25,7 +25,7 @@
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Task</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Description</th>
                       
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Location</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Location/Branch Code</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">FSE Assigned</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Status</th>
 
@@ -46,7 +46,9 @@
                         <p class="text-xs font-weight-bold mb-0">{{$tsk['task_description']}}</p>
                       </td>
                       <td>
-                        <span class="text-xs font-weight-bold">{{$tsk['location']}}</span>
+                        <a href="/sitehistory/{{$tsk->branch_code}}">
+                        <span class="text-xs font-weight-bold">{{$tsk['location']}}/{{$tsk->branch_code}}</span>
+                        </a>
                       </td>
                       <td>
                         <span class="text-xs font-weight-bold">{{$tsk['fse_assigned']}}</span>

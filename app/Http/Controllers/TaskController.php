@@ -82,6 +82,7 @@ class TaskController extends Controller
     public function store(Request $request){
         $formFields = $request->validate([
               'client_name'=> 'required',
+              'branch_code'=>'required',
               'location' => 'required',
               'task_description' =>'required',
               'task_type'=>'required',

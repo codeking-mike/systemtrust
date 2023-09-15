@@ -133,12 +133,8 @@
                         
                    
                     <td>
-                      <div class="d-flex px-2 py-1">
+                      <p class="text-xs text-danger font-weight-bold mb-0"><a href="sitehistory/{{$machine['branch_code']}}">{{$machine['branch_code']}}</a></p>
                         
-                        <div class="d-flex flex-column justify-content-center">
-                          
-                          <p class="text-xs text-secondary mb-0"><a href="editmachine/{{$machine['id']}}">{{$machine['branch_code']}}</a></p>
-                        </div>
                       </div>
                     </td>
                     <td>

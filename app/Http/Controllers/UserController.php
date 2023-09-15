@@ -77,7 +77,7 @@ class UserController extends Controller
             'phone'=> ['required', 'min:11' ],
             'address'=>'required',
             'staff_dob'=> 'required',
-            'marital_status'=>'required',
+            'marital_status'=>'required'
 
         ]);
 
@@ -100,41 +100,7 @@ class UserController extends Controller
         
     }
 
-    public function update2(Request $request, $id){
-        $user = User::find($id);
-        $formFields = $request->validate([
-            'name'=> ['required', 'min:3' ],
-            'phone'=> ['required', 'min:11' ],
-            'address'=>'required',
-            'staff_dob'=> 'required',
-            'marital_status'=>'required'
-
-        ]);
-
-
-
-        //upload profilepic
-        if($request->hasFile('profilepic')){
-            $formFields['profilepic'] = $request->file('profilepic')->store('userimages', 'public');
-        }
-
-        $user->name = $formFields['name'];
-        $user->phone = $formFields['phone'];
-        $user->address = $formFields['address'];
-        $user->staff_dob = $formFields['staff_dob'];
-        $user->marital_status = $formFields['marital_status'];
-        //create user 
-        $user->update();
-
-        //login user automatically
-       // auth()->login($user);
-
-        return back()->with('message', 'Details updated successfully!');
-
-
-        
-    }
-
+   
 
 
     //Log out

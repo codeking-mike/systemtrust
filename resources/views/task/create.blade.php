@@ -30,12 +30,20 @@
                    
                   </div>
                 </div>
-                <div class="col-md-12">
-                    <div class="form-group">
+                <div class="col-md-12 row">
+                    <div class="form-group col-md-5">
                       <label for="example-text-input" class="form-control-label">Location</label>
                       
                       <input type="text" name="location" class="form-control">
                       @error('location')
+                          <span class="text-danger">{{$message}}</span>
+                      @enderror
+                    </div>
+                    <div class="form-group col-md-5">
+                      <label for="example-text-input" class="form-control-label">Branch Code</label>
+                      
+                      <input type="text" name="branch_code" class="form-control">
+                      @error('branch_code')
                           <span class="text-danger">{{$message}}</span>
                       @enderror
                     </div>

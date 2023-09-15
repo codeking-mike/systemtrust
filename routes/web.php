@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\DashboardController;
 use App\Models\Task;
 use App\Models\User;
 use App\Models\Brand;
@@ -13,7 +12,9 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\ExpenseController;
+use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\MachineController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\SolarmachineController;
 
@@ -60,7 +61,7 @@ Route::get('/profile/{id}', [UserController::class, 'profile'])->middleware('aut
 Route::post('/users', [UserController::class, 'store']);
 //update user details 
 Route::put('/users/{user}', [UserController::class, 'update']);
-Route::put('/update/{id}', [UserController::class, 'update2']);
+Route::put('/update/{id}', [UserController::class, 'update']);
 //user logout
 Route::get('/logout', [UserController::class, 'logout'])->middleware('auth');
 //user logout
@@ -108,6 +109,8 @@ Route::put('/ups/{id}', [UpsController::class, 'update']);
 Route::get('/expenses', [ExpenseController::class, 'index'])->middleware('auth');
 Route::get('/expenses/create', [ExpenseController::class, 'create'])->middleware('auth');
 
+//site history
+Route::get('/sitehistory/{id}', [HistoryController::class, 'index']);
 
 //attendance sign-in
 Route::get('/attendance', [AttendanceController::class, 'index'])->middleware('auth');

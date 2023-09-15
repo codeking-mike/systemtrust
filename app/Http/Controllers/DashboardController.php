@@ -20,6 +20,8 @@ class DashboardController extends Controller
         return view('dashboard.index', [
             'title' => 'Systemtrust ERP',
             'employees'=> Attendance::where('att_date', date('Y-m-d'))->get(),
+            'todayAttendance'=> Attendance::where('att_date', date('Y-m-d'))->get(),
+            'tasklist'=>Task::where('fse_assigned', auth()->user()->name)->where('task_status', 'in progress')->get(),
             'tasks'=> $count=Task::where('task_status', 'in progress')->count(),
             'mytasks'=> $count=Task::where('task_status', 'in progress')->where('fse_assigned', auth()->user()->name)->count(),
             'attendance'=> Attendance::where('staff_name', auth()->user()->name)->where('att_date', date('Y-m-d'))->get(),
