@@ -858,6 +858,7 @@ progress {
 .col-12 {
   flex: 0 0 auto;
   width: 100%;
+  max-width: 1024px !important;
 }
 
 .offset-1 {
@@ -1421,6 +1422,7 @@ progress {
   .col-md-12 {
     flex: 0 0 auto;
     width: 100%;
+    max-width: 1024px !important;
   }
 
   .offset-md-0 {
@@ -1605,6 +1607,9 @@ progress {
 @media (min-width: 992px) {
   .col-lg {
     flex: 1 0 0%;
+  }
+  .col-md-12{
+    margin-left: 150px !important;
   }
 
   .row-cols-lg-auto>* {
