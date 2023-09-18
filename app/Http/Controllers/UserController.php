@@ -56,6 +56,7 @@ class UserController extends Controller
 
         //hash password
         $formFields['password'] = bcrypt($formFields['password']);
+        $formFields['position'] = strtolower($formFields['position']);
 
         //create user 
         $user = User::create($formFields);
@@ -63,7 +64,7 @@ class UserController extends Controller
         //login user automatically
        // auth()->login($user);
 
-        return redirect('/dashboard')->with('message', 'User created and logged in');
+        return redirect('/dashboard')->with('message', 'User created successfully!');
 
 
         
