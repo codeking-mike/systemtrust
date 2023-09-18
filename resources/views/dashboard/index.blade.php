@@ -237,7 +237,7 @@
            
         
           <div class="row">
-            <div class="col-12">
+            <div class="col-md-12">
               <div class="card mb-4">
                 <div class="card-header pb-0">
                   <h6>Todays Attendance</h6>
@@ -295,8 +295,8 @@
           </div>
      @else
           <div class="row">
-            <div class="col-12">
-              <div class="card mb-4">
+            <div class="col-md-12">
+              <div class="card mb-4 p-2">
                 <div class="card-header pb-0">
                   <h6>Pending Tasks</h6>
                   
