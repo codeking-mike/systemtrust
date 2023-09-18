@@ -7,7 +7,7 @@
         <div class="card">
           <div class="card-header pb-0">
             <div class="d-flex align-items-center">
-              <p class="mb-0">Submit Expense</p>
+              <p class="mb-0">Update Expense</p>
               
             </div>
           </div>
@@ -16,8 +16,9 @@
               
             <p class="text-success">{{session('message')}}</p>
             @endif
-            <form action="/expenses" method="post">
+            <form action="/expenses/{{$expenses->id}}" method="post">
                 @csrf
+                @method('PUT')
               <div class="row">
                 <div class="col-md-12">
                   <div class="form-group">
@@ -30,7 +31,7 @@
                     <div class="form-group">
                       <label for="example-text-input" class="form-control-label">Expense Date</label>
                       
-                      <input type="date" name="expense_date" class="form-control">
+                      <input type="date" name="expense_date" class="form-control" readonly>
                       @error('expense_date')
                           <span class="text-danger">{{$message}}</span>
                       @enderror
@@ -39,7 +40,7 @@
                   <div class="col-md-12">
                     <div class="form-group">
                       <label for="example-text-input" class="form-control-label">Expense Title</label>
-                      <input type="text" name="expense_title" class="form-control">
+                      <input type="text" name="expense_title" class="form-control" value="{{$expenses->expense_title}}">
                       @error('expense_title')
                           <span class="text-danger">{{$message}}</span>
                       @enderror
@@ -50,7 +51,7 @@
                 <div class="col-md-12">
                   <div class="form-group">
                     <label for="example-text-input" class="form-control-label">Expense Description</label>
-                    <textarea class="form-control" name="description"></textarea>
+                    <textarea class="form-control" name="description">{{$expenses->description}}</textarea>
                    
                   </div>
                   @error('description')
@@ -66,7 +67,7 @@
                 <div class="col-md-12">
                   <div class="form-group">
                                       
-                    <input type="submit" name="submit" class="btn btn-lg btn-danger" value="Submit Expense">
+                    <input type="submit" name="submit" class="btn btn-lg btn-danger" value="Update Expense">
                   </div>
                 </div>
               </div>

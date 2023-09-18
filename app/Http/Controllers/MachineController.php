@@ -128,6 +128,13 @@ class MachineController extends Controller
     }
 
 
+    public function delete($id){
+        Machine::where('id', $id)->delete();
+
+        return back()->with('message', 'Machine Deleted Successfully!');
+    }
+
+
 
         
    }

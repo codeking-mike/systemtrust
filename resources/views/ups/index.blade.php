@@ -95,6 +95,10 @@
 
           </div>
           <div class="card-body px-0 pt-0 pb-2">
+            @if (session()->has('message'))
+              
+            <p class="text-danger">{{session('message')}}</p>
+            @endif
             <div class="table-responsive p-0">
               <table class="table align-items-center mb-0" id="myTable">
                 <thead>
@@ -189,8 +193,11 @@
                      
                     
                     <td class="align-middle">
-                      <a href="/editups/{{$machine['id']}}" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit UPS">
+                      <a href="/editups/{{$machine['id']}}" class="btn btn-success btn-sm" data-toggle="tooltip" data-original-title="Edit UPS">
                         Edit
+                      </a> /
+                      <a href="/deleteups/{{$machine['id']}}" class="btn btn-danger btn-sm" data-toggle="tooltip" data-original-title="Edit UPS">
+                        Delete
                       </a>
                     </td>
                   </tr>

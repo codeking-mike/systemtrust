@@ -1608,9 +1608,6 @@ progress {
   .col-lg {
     flex: 1 0 0%;
   }
-  .col-md-12{
-    margin-left: 150px !important;
-  }
 
   .row-cols-lg-auto>* {
     flex: 0 0 auto;
@@ -1896,9 +1893,6 @@ progress {
     flex: 1 0 0%;
   }
 
-  .col-md-12{
-    margin-left: 150px !important;
-  }
 
   .row-cols-xl-auto>* {
     flex: 0 0 auto;

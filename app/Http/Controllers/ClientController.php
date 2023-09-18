@@ -45,4 +45,10 @@ class ClientController extends Controller
       return redirect('/clients');
     }
 
+    public function delete($id){
+        Client::where('id', $id)->delete();
+
+        return back()->with('message', 'Client Deleted Successfully!');
+    }
+
 }

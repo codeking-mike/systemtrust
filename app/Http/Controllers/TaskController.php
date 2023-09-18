@@ -15,6 +15,7 @@ class TaskController extends Controller
             'title'=>'Task',
             'task'=>Task::latest()->get(),
             
+            
 
         ]);
     }
@@ -136,5 +137,11 @@ class TaskController extends Controller
  
         return back()->with('message', 'Details updated successfully!');
 
+    }
+
+    public function delete($id){
+        Task::where('id', $id)->delete();
+
+        return back()->with('message', 'Task Deleted Successfully!');
     }
 }

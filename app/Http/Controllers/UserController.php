@@ -128,4 +128,12 @@ class UserController extends Controller
         return back()->withErrors(['email'=> 'Invalid Credentials'])->onlyInput('email');
 
     }
+
+    //delete user 
+
+    public function delete($id){
+        User::where('id', $id)->delete();
+
+        return back()->with('message', 'User Deleted Successfully!');
+    }
 }

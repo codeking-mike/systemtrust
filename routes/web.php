@@ -15,6 +15,7 @@ use App\Http\Controllers\ExpenseController;
 use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\MachineController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\JobreportController;
 use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\SolarmachineController;
 
@@ -66,11 +67,14 @@ Route::put('/update/{id}', [UserController::class, 'update']);
 Route::get('/logout', [UserController::class, 'logout'])->middleware('auth');
 //user logout
 Route::post('/users/authenticate', [UserController::class, 'authenticate']);
+//delete user
+Route::get('/deleteuser/{id}', [UserController::class, 'delete']);
 
 
 //clients CRUD routing
 Route::get('/clients', [ClientController::class, 'index'])->middleware('auth');
 Route::get('/clients/create', [ClientController::class, 'create'])->middleware('auth');
+Route::get('/deleteclient/{id}', [ClientController::class, 'delete']);
 Route::get('/brands', [BrandController::class, 'index'])->middleware('auth');
 
 //task CRUD routing
@@ -83,6 +87,7 @@ Route::get('/tasks/list', [TaskController::class, 'list']);
 Route::get('/submittask/{id}', [TaskController::class, 'submitreport']);
 Route::put('/tasks/{id}/report', [TaskController::class, 'report']);
 Route::get('/taskreport/{id}', [TaskController::class, 'viewreport']);
+Route::get('/deletetask/{id}', [TaskController::class, 'delete']);
 
 //machine routing
 Route::get('/machine', [MachineController::class, 'index'])->middleware('auth');
@@ -90,6 +95,7 @@ Route::get('/machine/create', [MachineController::class, 'create'])->middleware(
 Route::get('/machine/list', [MachineController::class, 'list'])->middleware('auth');
 Route::put('/machine/{id}', [MachineController::class, 'update']);
 Route::get('/editmachine/{id}', [MachineController::class, 'show'])->middleware('auth');
+Route::get('/deletemachine/{id}', [MachineController::class, 'delete']);
 
 
 Route::get('/solarmachines', [SolarmachineController::class, 'index'])->middleware('auth');
@@ -97,17 +103,32 @@ Route::get('/solarmachines/create', [SolarmachineController::class, 'create'])->
 Route::get('/solarmachines/list', [SolarmachineController::class, 'list'])->middleware('auth');
 Route::get('/editsolar/{id}', [SolarmachineController::class, 'show'])->middleware('auth');
 Route::put('/solarmachines/{id}', [SolarmachineController::class, 'update']);
+Route::get('/deletesolar/{id}', [SolarmachineController::class, 'delete']);
 
 Route::get('/ups', [UpsController::class, 'index'])->middleware('auth');
 Route::get('/ups/create', [UpsController::class, 'create'])->middleware('auth');
 Route::get('/editups/{id}', [UpsController::class, 'show'])->middleware('auth');
 Route::get('/ups/list', [UpsController::class, 'list'])->middleware('auth');
 Route::put('/ups/{id}', [UpsController::class, 'update']);
+Route::get('/deleteups/{id}', [UpsController::class, 'delete']);
 
 
 //expenses routing
 Route::get('/expenses', [ExpenseController::class, 'index'])->middleware('auth');
 Route::get('/expenses/create', [ExpenseController::class, 'create'])->middleware('auth');
+Route::post('/expenses', [ExpenseController::class, 'store']);
+Route::get('/showexpense/{id}', [ExpenseController::class, 'show'])->middleware('auth');
+Route::put('/expenses/{id}', [ExpenseController::class, 'update']);
+Route::get('/expenses/processed', [ExpenseController::class, 'updateall']);
+Route::get('/deleteexpense/{id}', [ExpenseController::class, 'delete']);
+
+//report routing
+Route::get('/reports', [JobreportController::class, 'index'])->middleware('auth');
+Route::get('/reports/jcc', [JobreportController::class, 'jcc'])->middleware('auth');
+Route::put('/reports/create', [JobreportController::class, 'store'])->middleware('auth');
+Route::get('/editreport/{id}', [JobreportController::class, 'edit'])->middleware('auth');
+Route::get('/deletereport/{id}', [JobreportController::class, 'delete']);
+
 
 //site history
 Route::get('/sitehistory/{id}', [HistoryController::class, 'index']);
@@ -124,7 +145,7 @@ Route::post('/tasks', [TaskController::class, 'store']);
 Route::post('/tasks/show', [TaskController::class, 'update']);
 Route::post('/machine', [MachineController::class, 'store']);
 Route::post('/solarmachines', [SolarmachineController::class, 'store']);
-Route::post('/expenses', [ExpenseController::class, 'store']);
+
 Route::post('/ups', [UpsController::class, 'store']);
 
 

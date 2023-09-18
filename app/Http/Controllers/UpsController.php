@@ -103,5 +103,11 @@ class UpsController extends Controller
             'myups'=>$count=Upsmachine::where('fse_assigned', $fname)->count(),
         ]);
     }
+
+    public function delete($id){
+        Upsmachine::where('id', $id)->delete();
+
+        return back()->with('message', 'Machine Deleted Successfully!');
+    }
   
 }

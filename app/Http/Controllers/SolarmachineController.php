@@ -113,6 +113,12 @@ class SolarmachineController extends Controller
       
   
       }
+
+      public function delete($id){
+        Solarmachine::where('id', $id)->delete();
+
+        return back()->with('message', 'Machine Deleted Successfully!');
+    }
   
 
 }
