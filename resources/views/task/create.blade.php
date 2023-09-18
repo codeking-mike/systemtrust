@@ -57,7 +57,8 @@
                            <option>Fault Call</option> 
                            <option>Relocation</option>
                            <option>Installation</option> 
-                           <option>Maintenance</option>   
+                           <option>Maintenance</option>  
+                           <option>Battery Replacement</option> 
                           
                        
                         

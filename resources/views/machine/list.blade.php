@@ -87,10 +87,7 @@
         <div class="card mb-4">
           <div class="card-header pb-0">
             <h4>Non Solar Site List</h4>
-            <div class="d-flex align-items-center">
-                
-                <a href="/machine/create" class="btn btn-primary btn-sm ms-auto">Add Machine</a>
-            </div>
+            
             <div class="row">
               <x-search-card />
 

@@ -79,9 +79,10 @@
                       <label for="example-text-input" class="form-control-label">Job Type</label>
                       <select name='job_type' class="form-control">
                         <option>Fault Call</option> 
-                           <option>Relocation</option>
-                           <option>Installation</option> 
-                           <option>Maintenance</option>   
+                        <option>Relocation</option>
+                        <option>Installation</option> 
+                        <option>Maintenance</option>  
+                        <option>Battery Replacement</option> 
                       </select>
                      
                     </div>
