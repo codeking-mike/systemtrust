@@ -42,13 +42,13 @@ class UserController extends Controller
             'name'=> ['required', 'min:3' ],
             'email'=> ['required', 'email', Rule::unique('users', 'email')],
             'password'=>['required', 'min:4'],
-            'phone'=> ['required', 'min:11' ],
-            'address'=>'required',
+            'phone'=> ['string', 'min:11' ],
+            'address'=>'string',
             'staff_dob'=> 'required',
-            'marital_status'=>'required',
-            'position'=>'required',
-            'department'=> 'required',
-            'role'=>'required'
+            'marital_status'=>'string',
+            'position'=>'string',
+            'department'=> 'string',
+            'role'=>'string'
            
            
            
