@@ -44,7 +44,7 @@ class UserController extends Controller
             'password'=>['required', 'min:4'],
             'phone'=> ['string', 'min:11' ],
             'address'=>'string',
-            'staff_dob'=> 'required',
+            'staff_dob'=> 'string',
             'marital_status'=>'string',
             'position'=>'string',
             'department'=> 'string',
