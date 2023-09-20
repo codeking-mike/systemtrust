@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Machine;
+use App\Exports\UpsExport;
 use App\Models\Upsmachine;
 use App\Models\Solarmachine;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class UpsController extends Controller
 {
@@ -108,6 +110,10 @@ class UpsController extends Controller
         Upsmachine::where('id', $id)->delete();
 
         return back()->with('message', 'Machine Deleted Successfully!');
+    }
+
+    public function exportToExcel(){
+        return Excel::download(new UpsExport, 'ups.xlsx');
     }
   
 }

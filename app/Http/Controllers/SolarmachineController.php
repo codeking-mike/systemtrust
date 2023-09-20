@@ -7,6 +7,9 @@ use App\Models\Machine;
 use App\Models\Upsmachine;
 use App\Models\Solarmachine;
 use Illuminate\Http\Request;
+use App\Exports\SolarDataExport;
+use App\Exports\MachineDataExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class SolarmachineController extends Controller
 {
@@ -118,6 +121,10 @@ class SolarmachineController extends Controller
         Solarmachine::where('id', $id)->delete();
 
         return back()->with('message', 'Machine Deleted Successfully!');
+    }
+
+    public function exportToExcel(){
+        return Excel::download(new SolarDataExport, 'solar.xlsx');
     }
   
 

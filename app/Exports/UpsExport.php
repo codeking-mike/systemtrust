@@ -1,18 +1,22 @@
 <?php
 
-namespace App\Models;
+namespace App\Exports;
 
-use Illuminate\Support\Facades\DB;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Upsmachine;
+use Maatwebsite\Excel\Concerns\FromCollection;
+use Maatwebsite\Excel\Concerns\WithHeadings;
 
-class Upsmachine extends Model
+class UpsExport implements FromCollection
 {
-    use HasFactory;
-
-    public static function getAllMachines(){
-        $result = DB::table('upsmachines')
-        ->select(
+    /**
+    * @return \Illuminate\Support\Collection
+    */
+    public function collection()
+    {
+        return collect(Upsmachine::getAllMachines());
+    }
+    public function headings(): array{
+        return [
             'branch_code',
             'bm_name',
             'bm_number',
@@ -29,8 +33,6 @@ class Upsmachine extends Model
             'load',
             'year_of_installation',
             'serial_number'
-        )
-        ->get()->toArray();
-        return $result;
+        ];
     }
 }

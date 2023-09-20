@@ -89,6 +89,7 @@
             <h6>UPS Site List</h6>
             <div class="d-flex align-items-center">
                 <a href="/ups/create" class=" btn btn-primary btn-sm ms-auto">Add Machine</a>
+                <a href="/exportups" class=" btn btn-success btn-sm ">Export Data</a>
             </div>
             <!-- Search component -->
             <x-search-card />

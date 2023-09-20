@@ -90,6 +90,7 @@
             <div class="d-flex align-items-center">
                 
                 <a href="/machine/create" class="btn btn-primary btn-sm ms-auto">Add Machine</a>
+                <a href="/exportmachine" class="btn btn-success btn-sm">Export Table</a>
             </div>
             <div class="row">
               <x-search-card />

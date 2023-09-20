@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\MachineDataExport;
 use App\Models\User;
 use App\Models\Machine;
 use App\Models\Upsmachine;
 use App\Models\Solarmachine;
 use Illuminate\Http\Request;
+use Excel;
 
 class MachineController extends Controller
 {
@@ -134,7 +136,9 @@ class MachineController extends Controller
         return back()->with('message', 'Machine Deleted Successfully!');
     }
 
-
+    public function exportToExcel(){
+        return Excel::download(new MachineDataExport, 'machine.xlsx');
+    }
 
         
    }

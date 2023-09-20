@@ -5,6 +5,7 @@ use App\Models\User;
 use App\Models\Brand;
 use App\Models\Client;
 use Illuminate\Http\Request;
+use App\Http\Controllers\SendMail;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UpsController;
 use App\Http\Controllers\TaskController;
@@ -96,6 +97,7 @@ Route::get('/machine/list', [MachineController::class, 'list'])->middleware('aut
 Route::put('/machine/{id}', [MachineController::class, 'update']);
 Route::get('/editmachine/{id}', [MachineController::class, 'show'])->middleware('auth');
 Route::get('/deletemachine/{id}', [MachineController::class, 'delete']);
+Route::get('/exportmachine', [MachineController::class, 'exportToExcel']);
 
 
 Route::get('/solarmachines', [SolarmachineController::class, 'index'])->middleware('auth');
@@ -104,6 +106,7 @@ Route::get('/solarmachines/list', [SolarmachineController::class, 'list'])->midd
 Route::get('/editsolar/{id}', [SolarmachineController::class, 'show'])->middleware('auth');
 Route::put('/solarmachines/{id}', [SolarmachineController::class, 'update']);
 Route::get('/deletesolar/{id}', [SolarmachineController::class, 'delete']);
+Route::get('/exportsolar', [SolarmachineController::class, 'exportToExcel']);
 
 Route::get('/ups', [UpsController::class, 'index'])->middleware('auth');
 Route::get('/ups/create', [UpsController::class, 'create'])->middleware('auth');
@@ -111,6 +114,7 @@ Route::get('/editups/{id}', [UpsController::class, 'show'])->middleware('auth');
 Route::get('/ups/list', [UpsController::class, 'list'])->middleware('auth');
 Route::put('/ups/{id}', [UpsController::class, 'update']);
 Route::get('/deleteups/{id}', [UpsController::class, 'delete']);
+Route::get('/exportups', [UpsController::class, 'exportToExcel']);
 
 
 //expenses routing
@@ -138,6 +142,7 @@ Route::get('/attendance', [AttendanceController::class, 'index'])->middleware('a
 Route::get('/attendance/history', [AttendanceController::class, 'history'])->middleware('auth');
 Route::post('/attendance/checkin', [AttendanceController::class, 'checkin']);
 Route::put('/attendance/{attn}', [AttendanceController::class, 'checkout']);
+Route::get('/exportattendance', [AttendanceController::class, 'exportToExcel']);
 
 //submit form post data to controller
 Route::post('/clients', [ClientController::class, 'store']);
@@ -147,5 +152,8 @@ Route::post('/machine', [MachineController::class, 'store']);
 Route::post('/solarmachines', [SolarmachineController::class, 'store']);
 
 Route::post('/ups', [UpsController::class, 'store']);
+
+Route::get('/sendmail', [SendMail::class, 'index']);
+
 
 

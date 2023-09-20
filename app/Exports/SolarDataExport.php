@@ -1,18 +1,23 @@
 <?php
 
-namespace App\Models;
+namespace App\Exports;
 
-use Illuminate\Support\Facades\DB;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Solarmachine;
+use Maatwebsite\Excel\Concerns\FromCollection;
+use Maatwebsite\Excel\Concerns\WithHeadings;
 
-class Solarmachine extends Model
+
+class SolarDataExport implements FromCollection
 {
-    use HasFactory;
-
-    public static function getAllMachines(){
-        $result = DB::table('solarmachines')
-        ->select(
+    /**
+    * @return \Illuminate\Support\Collection
+    */
+    public function collection()
+    {
+        return collect(Solarmachine::getAllMachines());
+    }
+    public function headings(): array{
+        return [
             'branch_code',
             'bm_name',
             'bm_number',
@@ -36,8 +41,6 @@ class Solarmachine extends Model
             'inverter_age',
             'last_battery_replaced',
             'inverter_deployed_by'
-        )
-        ->get()->toArray();
-        return $result;
+        ];
     }
 }

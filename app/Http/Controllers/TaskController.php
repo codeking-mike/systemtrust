@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Client;
+use App\Mail\notifyUser;
+use Mail;
 use App\Models\Task;
 use App\Models\User;
+use App\Models\Client;
+use App\Mail\sendreport;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class TaskController extends Controller
 {
@@ -79,8 +83,9 @@ class TaskController extends Controller
 
         //create an option to download report in pdf and excel
     }
-
+ 
     public function store(Request $request){
+        $body =''; $subject='';
         $formFields = $request->validate([
               'client_name'=> 'required',
               'branch_code'=>'required',
@@ -93,8 +98,20 @@ class TaskController extends Controller
 
 
         ]);
-        $user = User::find($formFields['fse_assigned']);
+
+        $email = DB::select('SELECT email FROM users WHERE name = ?' , [$formFields['fse_assigned']]);
+        
         //sendmail to user on task assignment.
+
+        $subject = "Task Assigned";
+        $body .= 'You have been assigned a task with the details: ' .$formFields['task_description']. 
+        '.At ' .$formFields['client_name']. 'in' .$formFields['location'].'.Kindly login to the app to view details.';
+    
+
+
+
+        Mail::to($email)->send(new sendreport($subject, $body, $formFields['fse_assigned']));
+
         Task::create($formFields);
 
         return redirect('/tasks')->with('message', 'Task Created Successfully!');
@@ -115,6 +132,9 @@ class TaskController extends Controller
     }
 
     public function report(Request $request, $id){
+
+        $body =''; $subject=''; $details='';
+
         $task = Task::find($id);
         $formFields = $request->all();
         //upload profilepic
@@ -133,9 +153,19 @@ class TaskController extends Controller
 
         $task->update();
 
+
  //sendmail to support
+ $subject = "Job Report";
+ $body .= 'Report for ' .$task->task_type. ' at '.$task->location.' ';
+ $body .= 'Details: '. $task->task_description;
+ $details = $formFields['remarks'];
+
+
+
+
+ Mail::to('support@systemtrustng.com')->send(new notifyUser($subject, $body, auth()->user()->name, $details));
  
-        return back()->with('message', 'Details updated successfully!');
+        return back()->with('message', 'Report sent successfully!');
 
     }
 

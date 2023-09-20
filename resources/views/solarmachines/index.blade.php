@@ -90,6 +90,7 @@
             <h6>Solar Site List</h6>
             <div class="d-flex align-items-center">
               <a href="/solarmachines/create" class="btn btn-primary btn-sm ms-auto">Add Machine</a>
+              <a href="/exportsolar" class="btn btn-success btn-sm">Export Data</a>
             </div>
             <!-- Search component -->
             <x-search-card />
