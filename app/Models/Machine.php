@@ -31,7 +31,7 @@ class Machine extends Model
     ]; 
 
     public static function getAllMachines(){
-        $result = DB::table('Machines')
+        $result = DB::table('machines')
         ->select(
         'branch_code',
         'bm_name',
