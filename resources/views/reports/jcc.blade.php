@@ -22,7 +22,8 @@
               <div class="row">
                
                   
-               
+                <h6>Client Details</h6>
+                <hr>
                 <div class="col-md-12 row">
                   <div class="form-group col-md-6">
                     <label for="example-text-input" class="form-control-label">Client Name</label>
@@ -74,6 +75,8 @@
                     </div>
                     
                 </div>
+                <h6>Job Details</h6>
+                <hr>
                 <div class="col-md-12 row">
                     <div class="form-group col-md-5">
                       <label for="example-text-input" class="form-control-label">Job Type</label>
@@ -102,6 +105,8 @@
                     </div>
                     
                 </div>
+                <h6>Machine Details</h6>
+                <hr>
                 <div class="col-md-12 row">
                     <div class="form-group col-md-4">
                         <label for="example-text-input" class="form-control-label">Machine Type</label>
@@ -109,7 +114,7 @@
                         <select name='equipment_type' class="form-control">
                           <option>Inverter</option> 
                              <option>UPS</option>
-                             <option>Batter</option> 
+                             <option>Battery</option> 
                              <option>Solar Panels</option>   
                         </select>
                     </div>
@@ -139,7 +144,7 @@
                        
                     </div>
                     <div class="form-group col-md-5">
-                        <label for="example-text-input" class="form-control-label">Date Installed</label>
+                        <label for="example-text-input" class="form-control-label">Date Machine Installed</label>
                         
                         <input type="text" name="date_installed" class="form-control">
                         
@@ -149,12 +154,15 @@
                       
                       <select name="snmp_status" class="form-control">
                       <option>available</option>
-                      <option>unavailable</option>
+                      <option selected>unavailable</option>
 
                       </select>
                     </div>
                     
                 </div>
+                <h6>Battery Parameters</h6>
+                <hr>
+
                 <div class="col-md-12 row">
                   <div class="form-group col-md-4">
                     <label for="example-text-input" class="form-control-label">Battery Specification</label>
@@ -181,7 +189,7 @@
                 </div>
                 <div class="col-md-12 row">
                   <div class="form-group col-md-4">
-                      <label for="example-text-input" class="form-control-label">MSD Voltage</label>
+                      <label for="example-text-input" class="form-control-label">Measured Voltage</label>
                       
                       <input type="text" name="msd_voltage" class="form-control">
                      
@@ -193,24 +201,42 @@
                    
                 </div>
                 <div class="form-group col-md-4">
-                  <label for="example-text-input" class="form-control-label">Charging Amps</label>
+                  <label for="example-text-input" class="form-control-label">Charging Amps of Inverter</label>
                   
                   <input type="text" name="charging_amps" class="form-control">
                  
               </div>
+              </div>
               <div class="col-md-12">
                 <div class="col-md-6">
-                  <label for="" class="form-control-label">Last Battery Replaced</label>
+                  <label for="" class="form-control-label">Last Battery Replacement Date</label>
                  <input type="text" class="form-control" name="last_battery_replaced">
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="example-text-input" class="form-control-label"> Battery Backup Time</label>
+                  
+                  <input type="text" name="backup_time" class="form-control">
+                 
+              </div>
+              </div>
+              <hr/>
+              <h6>PV Parameters</h6>
+              <div class="col-md-12 row">
+                <div class="col-md-4">
+                  <label for="" class="form-control-label">PV Wattage</label>
+                  <input type="text" class="form-control" name="pv_wattage">
+                </div>
+                <div class="col-md-4">
+                  <label for="" class="form-control-label">PV Qauntity</label>
+                  <input type="text" class="form-control" name="pv_qty">
+                </div>
+                <div class="col-md-4">
+                  <label for="" class="form-control-label">PV Configuration</label>
+                  <input type="text" class="form-control" name="pv_config">
                 </div>
               </div>
               <div class="col-md-12 row">
-                <div class="form-group col-md-4">
-                    <label for="example-text-input" class="form-control-label">Backup Time</label>
-                    
-                    <input type="text" name="backup_time" class="form-control">
-                   
-                </div>
+                
                 <div class="form-group col-md-4">
                   <label for="example-text-input" class="form-control-label">Gen Run Time</label>
                   
@@ -227,8 +253,9 @@
                 
             </div>
                   
-                  
-              
+                
+                 <h6>Site Parameters</h6> 
+                 <hr /> 
                 <div class="col-md-12 row">
                     <div class="form-group col-md-4">
                         <label for="example-text-input" class="form-control-label">Load Description</label>
@@ -271,6 +298,39 @@
                   </div>
                   
               </div>
+              <div class="col-md-12 row">
+                <div class="form-group col-md-4">
+                    <label for="example-text-input" class="form-control-label">Cabling</label>
+                    <select name="cabling" id="" class="form-control">
+                      <option>Good</option>
+                      <option>Bad</option>
+                    </select>
+                    
+                   
+                    
+                </div>
+                <div class="form-group col-md-4">
+                  <label for="example-text-input" class="form-control-label">Environs</label>
+                  
+                  <select name="environs" id="" class="form-control">
+                    <option>Good</option>
+                    <option>Bad</option>
+                  </select>
+                 
+                </div>
+                <div class="form-group col-md-4">
+                  <label for="example-text-input" class="form-control-label">Surge Available?</label>
+                  
+                  <select name="surge" id="" class="form-control">
+                    <option>Yes</option>
+                    <option>No</option>
+                  </select>
+                 
+                </div>
+                
+            </div>
+            <h6>Diagnosis and Recommendations</h6> 
+            <hr />
               <div class="col-md-12">
                 <div class="form-group col-md-8">
                   <label for="" class="form-control-label">Site Diagnosis</label>
@@ -292,7 +352,7 @@
               <div class="col-md-12">
                 <div class="form-group col-md-8">
                   <label for="" class="form-control-label">Battery Voltage Readings</label>
-                   <textarea name="battery_voltage_reading" class="form-control" id="" cols="10" rows="5"></textarea>
+                   <textarea name="battery_voltage_reading" class="form-control" id="" cols="14" rows="6"></textarea>
                 </div>
               </div>
               <div class="col-md-12">
@@ -312,7 +372,7 @@
                 <div class="col-md-12">
                   <div class="form-group">
                                       
-                    <input type="submit" name="submit" class="btn btn-lg btn-danger" value="Submit JCC">
+                    <input type="submit" name="submit" class="btn btn-lg btn-danger" value="Submit Report">
                   </div>
                 </div>
               </div>

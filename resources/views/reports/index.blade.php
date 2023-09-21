@@ -18,8 +18,8 @@
                 
 
                 @if (auth()->user()->role != 'admin')
-                <a href="/reports/jcc" class="btn btn-success btn-sm ms-auto">Fill JCC & ERF Report</a>
-                <a href="/tasks/list" class="btn btn-danger btn-sm ms-auto">Task Reports</a>
+                <a href="/reports/jcc" class="btn btn-success btn-sm ms-auto">Submit JCC Report</a>
+                <a href="/reports/job" class="btn btn-danger btn-sm">Job Reports</a>
 
                 @else
                 <a href="/tasks/completed" class="btn btn-danger btn-sm ms-auto">Task Reports</a>

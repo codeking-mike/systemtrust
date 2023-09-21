@@ -3,7 +3,7 @@ FSE: {{$sender}}
 
 Description: {{$body}}
 
-Remarks: {{$details}}
+{{$details}}
 
 
 
