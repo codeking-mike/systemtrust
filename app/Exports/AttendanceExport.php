@@ -17,10 +17,10 @@ class AttendanceExport implements FromCollection, WithHeadings
     }
     public function headings(): array{
         return [
-         'staff_name',
-        'att_date',
-        'time_in',
-        'time_out'
+        'Staff Name',
+        'Date',
+        'Time In',
+        'Time Out'
         ];
     }
 }
