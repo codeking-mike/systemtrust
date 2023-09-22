@@ -10,8 +10,8 @@
               <h6>Pending Tasks</h6>
               <div class="d-flex align-items-center">
                 
-                <a class=" btn btn-primary btn-sm ms-auto p-0" href="/tasks/create">Create</a>
-                <a class=" btn btn-danger btn-sm ms-auto p-0" href="/tasks/completed">View Completed</a>
+                <a class=" btn btn-primary btn-sm ms-auto p-2" href="/tasks/create">Create</a>
+                <a class=" btn btn-danger btn-sm ms-auto p-2" href="/tasks/completed">View Completed</a>
               
               </div>
              
