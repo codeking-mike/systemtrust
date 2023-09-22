@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Mail\notifyUser;
 use Mail;
+use Carbon\Carbon;
 use App\Models\Task;
 use App\Models\User;
 use App\Models\Client;
+use App\Mail\notifyUser;
 use App\Mail\sendreport;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -35,10 +36,21 @@ class TaskController extends Controller
     }
 
     public function completed(){
-
+        $date = Carbon::today()->subDays(90);
         return view('task.completed', [
             'title'=>'View Task',
-            'task'=>Task::where('task_status', 'completed')->get()
+            'task'=>Task::where('task_status', 'completed')
+            ->where('created_at', '>=', $date)->get()
+            
+
+        ]);
+    }
+
+    public function getAll(){
+        
+        return view('task.all', [
+            'title'=>'View All Task',
+            'task'=>Task::where('task_status', 'completed')->paginate(50)
             
 
         ]);

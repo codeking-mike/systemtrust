@@ -7,13 +7,13 @@
         <div class="col-12">
           <div class="card mb-4">
             <div class="card-header pb-0">
-              <h6>Completed Tasks</h6>
-              <p class="card-text">Task completed over the last 3 months</p>
+              <h6>All Completed Tasks</h6>
+              <p class="card-text"></p>
               <div class="d-flex align-items-center">
                 
                     
                 <a class=" btn btn-primary btn-sm" href="/tasks/create">Create Task</a>
-                <a class=" btn btn-danger btn-sm" href="/tasks/all">View All</a>
+                
                 
               
               </div>
@@ -22,6 +22,7 @@
                     <div class="input-group">
                       <span class="input-group-text text-body"><i class="fas fa-search" aria-hidden="true"></i></span>
                       <input type="text" id="myInput" onkeyup="searchTask()" class="form-control" placeholder="Search task by location ...">
+                  
                     </div>
                 </div>
                 
@@ -95,6 +96,15 @@
                 </table>
               </div>
             </div>
+            <div class="card-footer">
+                <div class="row tex-muted">
+                  <p class="card-text">
+                    {{$tsk->links()}}
+                  </p>
+                 
+                </div>
+               
+              </div>
           </div>
         </div>
       </div>

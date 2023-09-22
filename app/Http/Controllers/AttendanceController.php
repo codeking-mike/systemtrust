@@ -58,7 +58,7 @@ return redirect('/dashboard')->with('message', 'Check-in Successful');
     public function checkout(Request $request, $id){
         $attn = Attendance::find($id);
         $time_out = date('h:i a');
-        $attn->time_out = $request->input('time_out');
+        $attn->time_out = $time_out;
 
         $attn->update();
 
