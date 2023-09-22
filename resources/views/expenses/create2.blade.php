@@ -31,7 +31,7 @@
                     <div class="form-group">
                       <label for="example-text-input" class="form-control-label">Expense Date</label>
                       
-                      <input type="date" name="expense_date" class="form-control" readonly>
+                      <input type="text" name="expense_date" class="form-control" value="{{$expenses->expense_date}}" >
                       @error('expense_date')
                           <span class="text-danger">{{$message}}</span>
                       @enderror
@@ -47,7 +47,16 @@
                      
                     </div>
                   </div>
-                
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label for="example-text-input" class="form-control-label">Daily Total(Enter the total amount for the day)</label>
+                      <input type="text" name="daily_total" class="form-control" value="{{$expenses->daily_total}}">
+                      @error('daily_total')
+                          <span class="text-danger">{{$message}}</span>
+                      @enderror
+                     
+                    </div>
+                  </div>
                 <div class="col-md-12">
                   <div class="form-group">
                     <label for="example-text-input" class="form-control-label">Expense Description</label>

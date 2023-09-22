@@ -7,7 +7,7 @@ use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 
 
-class SolarDataExport implements FromCollection
+class SolarDataExport implements FromCollection, WithHeadings
 {
     /**
     * @return \Illuminate\Support\Collection

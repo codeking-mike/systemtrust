@@ -46,11 +46,21 @@
                      
                     </div>
                   </div>
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label for="example-text-input" class="form-control-label">Daily Total(Enter the total amount for the day)</label>
+                      <input type="text" name="daily_total" class="form-control">
+                      @error('daily_total')
+                          <span class="text-danger">{{$message}}</span>
+                      @enderror
+                     
+                    </div>
+                  </div>
                 
                 <div class="col-md-12">
                   <div class="form-group">
-                    <label for="example-text-input" class="form-control-label">Expense Description</label>
-                    <textarea class="form-control" name="description"></textarea>
+                    <label for="example-text-input" class="form-control-label">Expense Description(seperate each desc with a comma)</label>
+                    <textarea class="form-control" name="description" cols="15" rows="10" placeholder="e.g Transport to site - N200"></textarea>
                    
                   </div>
                   @error('description')

@@ -15,7 +15,7 @@
                  @else
                  <a class=" btn btn-success btn-sm ms-auto" href="/expenses/processed">Mark All as Processed</a>
                  <a class=" btn btn-primary btn-sm ms-auto" href="/expenses/create">Submit Expenses</a>
-                 <a class="btn btn-danger btn-sm " href="#">Export Expenses</a>
+                 <a class="btn btn-danger btn-sm " href="/exportexpenses">Export Expenses</a>
                 @endif
                 
               

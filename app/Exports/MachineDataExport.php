@@ -6,8 +6,9 @@ use App\Models\Machine;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 
-class MachineDataExport implements FromCollection
+class MachineDataExport implements FromCollection, WithHeadings
 {
+    
     /**
     * @return \Illuminate\Support\Collection
     */
@@ -15,7 +16,7 @@ class MachineDataExport implements FromCollection
     {
         return collect(Machine::getAllMachines());
     }
-    public function heading(): array{
+    public function headings(): array{
         return [
               'Branch Code',
               'Bm_Name',
