@@ -142,7 +142,7 @@ Route::get('/sitehistory/{id}', [HistoryController::class, 'index']);
 Route::get('/attendance', [AttendanceController::class, 'index'])->middleware('auth');
 Route::get('/attendance/history', [AttendanceController::class, 'history'])->middleware('auth');
 Route::post('/attendance/checkin', [AttendanceController::class, 'checkin']);
-Route::put('/attendance/{attn}', [AttendanceController::class, 'checkout']);
+Route::put('/attendance/{id}', [AttendanceController::class, 'checkout']);
 Route::get('/exportattendance', [AttendanceController::class, 'exportToExcel']);
 
 //submit form post data to controller

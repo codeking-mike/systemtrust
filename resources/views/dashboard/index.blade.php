@@ -184,7 +184,7 @@
                 @csrf
                 <input type="hidden" name="staff_name" value="{{auth()->user()->name}}" />
                 <input type="hidden" name="att_date" value="{{date('Y-m-d')}}" />
-                <input type="hidden" name="time_in" value="{{date('g:i a')}}" />
+                <input type="hidden" name="time_in" value="{{date('h:i a')}}" />
               <button class="btn btn-primary" type="submit">
                 <i class="ni ni-world text-lg opacity-10" aria-hidden="true"></i>Check-in
               </button>
@@ -216,7 +216,7 @@
                 @csrf
                 @method('PUT')
                 
-                <input type="hidden" name="time_out" value="{{date('g:i a')}}" />
+                <input type="hidden" name="time_out" value="{{date('h:i a')}}" />
                 <button class="btn btn-danger" type="submit">
                   <i class="ni ni-world text-lg opacity-10" aria-hidden="true"></i>Check-out
                 </button>
