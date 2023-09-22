@@ -76,7 +76,8 @@ Route::get('/deleteuser/{id}', [UserController::class, 'delete']);
 Route::get('/clients', [ClientController::class, 'index'])->middleware('auth');
 Route::get('/clients/create', [ClientController::class, 'create'])->middleware('auth');
 Route::get('/deleteclient/{id}', [ClientController::class, 'delete']);
-Route::get('/brands', [BrandController::class, 'index'])->middleware('auth');
+Route::get('/viewclient/{id}', [ClientController::class, 'show'])->middleware('auth');
+Route::put('/clients/{id}', [ClientController::class, 'update'])->middleware('auth');
 
 //task CRUD routing
 Route::get('/tasks', [TaskController::class, 'index'])->middleware('auth');
