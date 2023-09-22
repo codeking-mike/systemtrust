@@ -89,6 +89,7 @@ Route::get('/submittask/{id}', [TaskController::class, 'submitreport']);
 Route::put('/tasks/{id}/report', [TaskController::class, 'report']);
 Route::get('/taskreport/{id}', [TaskController::class, 'viewreport']);
 Route::get('/deletetask/{id}', [TaskController::class, 'delete']);
+Route::get('/tasks//all', [TaskController::class, 'all']);
 
 //machine routing
 Route::get('/machine', [MachineController::class, 'index'])->middleware('auth');
