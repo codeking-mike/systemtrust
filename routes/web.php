@@ -125,6 +125,7 @@ Route::get('/showexpense/{id}', [ExpenseController::class, 'show'])->middleware(
 Route::put('/expenses/{id}', [ExpenseController::class, 'update']);
 Route::get('/expenses/processed', [ExpenseController::class, 'updateall']);
 Route::get('/deleteexpense/{id}', [ExpenseController::class, 'delete']);
+Route::get('/exportexpenses', [ExpenseController::class, 'exportToExcel']);
 
 //report routing
 Route::get('/reports', [JobreportController::class, 'index'])->middleware('auth');
