@@ -6,19 +6,19 @@
       <div class="col-md-8">
         <div class="card">
           <div class="card-header pb-0">
-            <div class="d-flex align-items-center">
-              <p class="mb-0">Submit JCC</p>
+            <x-back-card />
+           
+              <h5 class=" card-title mb-0">Submit JCC</h5>
               
-            </div>
+            
           </div>
           <div class="card-body">
             @if (session()->has('message'))
               
             <p class="text-success">{{session('message')}}</p>
             @endif
-            <form action="/reports/create" method="post" enctype="multipart/form-data">
+            <form action="/reports/create/jcc" method="post" enctype="multipart/form-data">
                 @csrf
-                @method('PUT')
               <div class="row">
                
                   
@@ -27,22 +27,16 @@
                 <div class="col-md-12 row">
                   <div class="form-group col-md-6">
                     <label for="example-text-input" class="form-control-label">Client Name</label>
-                    <select name='client_name' class="form-control">
-                      @foreach ($clients as $client)
-                         
-                         <option>{{$client->client_name}}</option>  
-                        
-                      @endforeach
+                    <input type="text" name='client_name' class="form-control" value="{{$machine->client_name}}" readonly>
+                     
                       
                     </select>
                    
                   </div>
                     <div class="form-group col-md-6">
                         <label for="" class="form-control-lable">Branch Code</label>
-                        <input type="text" name="branch_code" class="form-control">
-                        @error('branch_code')
-                        <span class="text-danger">{{$message}}</span>
-                        @enderror
+                        <input type="text" name="branch_code" class="form-control" value="{{$machine->branch_code}}" readonly>
+                       
                     </div>
                 </div>
                 <div class="col-md-12 row">
@@ -64,14 +58,14 @@
                     <div class="form-group col-md-5">
                         <label for="example-text-input" class="form-control-label">Location</label>
                         
-                        <input type="text" name="site_address" class="form-control">
+                        <input type="text" name="site_address" class="form-control" value="{{$machine->branch_address}}">
                         
                     </div>
                     <div class="form-group col-md-5">
                       <label for="example-text-input" class="form-control-label">State</label>
                       
-                      <input type="text" name="site_state" class="form-control">
-                     <input type='hidden' name="fse_assigned" value="{{auth()->user()->name}}" />
+                      <input type="text" name="site_state" class="form-control" value="{{$machine->branch_state}}" >
+                      <input type='hidden' name="fse_assigned" value="{{auth()->user()->name}}" />
                     </div>
                     
                 </div>
@@ -112,7 +106,7 @@
                         <label for="example-text-input" class="form-control-label">Machine Type</label>
                         
                         <select name='equipment_type' class="form-control">
-                          <option>Inverter</option> 
+                          <option selected>Inverter</option> 
                              <option>UPS</option>
                              <option>Battery</option> 
                              <option>Solar Panels</option>   
@@ -121,15 +115,15 @@
                     <div class="form-group col-md-4">
                       <label for="example-text-input" class="form-control-label">Machine Brand</label>
                       
-                    <input type="tex" name='equipment_brand' class="form-control">
+                    <input type="tex" name='equipment_brand' class="form-control" value="{{$machine->inverter_brand}}">
                        
-                        
+                      <input type="hidden" name="machine_id" value="{{$machine->id}}" />  
                      
                     </div>
                     <div class="form-group col-md-4">
                       <label for="example-text-input" class="form-control-label">Machine Capacity</label>
                       
-                    <input type="tex" name='equipment_capacity' class="form-control">
+                    <input type="tex" name='equipment_capacity' class="form-control" value="{{$machine->inverter_capacity}}">
                        
                         
                      
@@ -167,19 +161,19 @@
                   <div class="form-group col-md-4">
                     <label for="example-text-input" class="form-control-label">Battery Specification</label>
                     
-                    <input type="text" name="battery_spec" class="form-control">
+                    <input type="text" name="battery_spec" class="form-control" value="{{$machine->battery_spec}}">
                    
                   </div>
                   <div class="form-group col-md-4">
                     <label for="example-text-input" class="form-control-label">Battery Quantity</label>
                     
-                    <input type="text" name="battery_qty" class="form-control">
+                    <input type="text" name="battery_qty" class="form-control" value="{{$machine->battery_qty}}">
                    
                    </div>
                     <div class="form-group col-md-4">
                         <label for="example-text-input" class="form-control-label">Battery Brand</label>
                         
-                        <input type="text" name="battery_brand" class="form-control">
+                        <input type="text" name="battery_brand" class="form-control" value="{{$machine->battery_brand}}">
                        
                     </div>
                     
@@ -368,6 +362,15 @@
                   
                  
                 </div>
+              </div>
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label for="example-text-input" class="form-control-label">Upload Site Image</label>
+                  <input type="file" name="site" class="form-control" value=""  />
+                  
+                 
+                </div>
+               
               </div>
                 <div class="col-md-12">
                   <div class="form-group">

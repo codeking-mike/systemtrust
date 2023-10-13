@@ -169,6 +169,7 @@
                   <div class="form-group">
                                       
                     <input type="submit" name="submit" class="btn btn-lg btn-danger" value="Update UPS">
+                    <a href="/deleteups/{{$ups->id}}" class="btn btn-lg btn-danger">Delist Machine</a>
                   </div>
                 </div>
               </div>
@@ -185,5 +186,86 @@
         </div>
       </div>
     
-   
+      <div class="row">
+        <div class="col-12">
+          <div class="card mb-4">
+        
+            <div class="card-header pb-0">
+              <h5 class="card-title pb-2" id="history">Maintenance History</h5>
+              
+              <!-- Search component -->
+  
+            </div>
+            <div class="card-body px-0 pt-0 pb-2">
+              <div class="table-responsive p-4">
+                <table class="table align-items-center mb-0" id="myTable">
+                  <thead>
+                    <tr>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Date Visited</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">FSE Assigned</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Job Type</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Description</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Diagnosis</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Causes</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Recommendation</th>
+                      
+                    </tr>
+                  </thead>
+                  <tbody>
+                    @foreach ( $history as $rep)
+                    <tr>
+                      
+                          
+                     
+                      <td>
+                        
+                            
+                            <p class="text-xs text-secondary mb-0">{{$rep->visit_date}}</p>
+                          
+                        </div>
+                      </td>
+                      <td>
+                        <p class="text-xs font-weight-bold mb-0">{{$rep->fse_assigned}}</p>
+                        
+                      </td>
+                      <td>
+                          <p class="text-xs font-weight-bold mb-0">{{$rep->job_type}}</p>
+                          
+                        </td>
+                        <td>
+                          <p class="text-xs font-weight-bold mb-0">{{$rep->job_description}}</p>
+                          
+                        </td>
+                        <td>
+                          <p class="text-xs font-weight-bold mb-0">{{$rep->site_diagnosis}}</p>
+                          
+                        </td>
+                       
+                        <td>
+                          <p class="text-xs font-weight-bold mb-0">{{$rep->causes_of_damage}}</p>
+                          
+                        </td>
+                        <td>
+                          <p class="text-xs font-weight-bold mb-0">{{$rep->recommendations}}</p>
+                          
+                        </td>
+                       
+                       
+                        
+                       
+                       
+                        
+                    </tr>
+                    @endforeach
+                    
+                    
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+
 @endsection

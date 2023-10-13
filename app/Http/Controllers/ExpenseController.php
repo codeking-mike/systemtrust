@@ -28,25 +28,26 @@ class ExpenseController extends Controller
     }
     public function create(){
         return view('expenses.create', [
-            'title'=>'Add Expense'
+            'title'=>'Add Expense',
+            'myexpenses'=>Expense::where('staff_name', auth()->user()->name)
+            ->where('status', 'pending')->get()
         ]);
     }
 
     public function store(Request $request){
+
         $formFields = $request->validate([
-              'staff_name'=> 'required',
-              'expense_date' => 'required',
-              'expense_title' =>'required',
-              'description'=>'required',
-              'daily_total'=>'required',
-              'status'=>'required'
+              'staff_name' => ['string', 'nullable'],
+              'expense_date' => ['string', 'nullable'],
+              'description'=> ['string', 'nullable'],
+              'amount'=> ['string', 'nullable'],
+              'status'=> ['string', 'nullable']
               
 
 
         ]);
-        
+       
         Expense::create($formFields);
-
         return back()->with('message', 'Expense Submitted!');
 
     }
@@ -54,14 +55,14 @@ class ExpenseController extends Controller
     public function update(Request $request, $id){
         $expense = Expense::find($id);
         $formFields = $request->validate([
-              'expense_title' =>'string',
-              'daily_total' =>'string',
+              'expense_date' =>'string',
+              'amount' =>'string',
               'description'=>'string'
 
         ]);
-     $expense->expense_title = $formFields['expense_title'];
+     $expense->expense_date = $formFields['expense_date'];
      $expense->description = $formFields['description'];
-     $expense->daily_total = $formFields['daily_total'];
+     $expense->amount = $formFields['amount'];
      $expense->update();
 
         return back()->with('message', 'Expense Updated Successfully!');

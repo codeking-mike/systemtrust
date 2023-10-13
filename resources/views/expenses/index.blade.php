@@ -36,8 +36,9 @@
                       
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Expense Date</th>
                       
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Expense Title</th>
+                     
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Description</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Amount</th>
                       
 
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Action</th>
@@ -53,11 +54,12 @@
                       <td>
                         <p class="text-xs font-weight-bold mb-0">{{$expense['expense_date']}}</p>
                       </td>
-                      <td>
-                        <span class="text-xs font-weight-bold">{{$expense['expense_title']}}</span>
-                      </td>
+                     
                       <td>
                         <span class="text-xs font-weight-bold">{{$expense['description']}}</span>
+                      </td>
+                      <td>
+                        <span class="text-xs font-weight-bold">{{$expense['amount']}}</span>
                       </td>
                       
                       <td class="align-middle">
@@ -78,8 +80,9 @@
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Staff Name</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Expense Date</th>
                       
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Expense Title</th>
+                     
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Description</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Amount</th>
                       
 
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Action</th>
@@ -98,11 +101,12 @@
                       <td>
                         <p class="text-xs font-weight-bold mb-0">{{$expense['expense_date']}}</p>
                       </td>
-                      <td>
-                        <span class="text-xs font-weight-bold">{{$expense['expense_title']}}</span>
-                      </td>
+                     
                       <td>
                         <span class="text-xs font-weight-bold">{{$expense['description']}}</span>
+                      </td>
+                      <td>
+                        <span class="text-xs font-weight-bold">{{$expense['amount']}}</span>
                       </td>
                       
                       <td class="align-middle">

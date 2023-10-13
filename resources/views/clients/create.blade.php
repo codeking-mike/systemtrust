@@ -5,14 +5,15 @@
     <div class="row">
       <div class="col-md-8">
         <div class="card">
+          <x-back-card />
           <div class="card-header pb-0">
             <div class="d-flex align-items-center">
-              <p class="mb-0">Create Tasks</p>
+              <p class="mb-0">Add Client</p>
               
             </div>
           </div>
           <div class="card-body">
-           
+           <x-flash-message />
             <form action="/clients" method="post">
                 @csrf
               <div class="row">

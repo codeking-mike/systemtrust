@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LeaveController;
 use App\Models\Task;
 use App\Models\User;
 use App\Models\Brand;
@@ -53,6 +54,10 @@ Route::get('/', function () {
 })->name('login');
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth');
+Route::get('/alpine', function (){
+    return view('alpine', ['title'=>'Alpine JS Tutorial']);
+});
+
 
 //user CRUD routing
 Route::get('/users', [UserController::class, 'index'])->middleware('auth');
@@ -64,12 +69,14 @@ Route::post('/users', [UserController::class, 'store']);
 //update user details 
 Route::put('/users/{user}', [UserController::class, 'update']);
 Route::put('/update/{id}', [UserController::class, 'update']);
+Route::put('/users/password/{id}', [UserController::class, 'password']);
 //user logout
 Route::get('/logout', [UserController::class, 'logout'])->middleware('auth');
 //user logout
 Route::post('/users/authenticate', [UserController::class, 'authenticate']);
 //delete user
 Route::get('/deleteuser/{id}', [UserController::class, 'delete']);
+Route::get('/settings/{id}', [UserController::class, 'settings']);
 
 
 //clients CRUD routing
@@ -78,6 +85,9 @@ Route::get('/clients/create', [ClientController::class, 'create'])->middleware('
 Route::get('/deleteclient/{id}', [ClientController::class, 'delete']);
 Route::get('/viewclient/{id}', [ClientController::class, 'show'])->middleware('auth');
 Route::put('/clients/{id}', [ClientController::class, 'update'])->middleware('auth');
+Route::get('/clients/home', [ClientController::class, 'home'])->middleware('auth');
+Route::get('/clients/corporate', [ClientController::class, 'corporate'])->middleware('auth');
+
 
 //task CRUD routing
 Route::get('/tasks', [TaskController::class, 'index'])->middleware('auth');
@@ -100,6 +110,11 @@ Route::put('/machine/{id}', [MachineController::class, 'update']);
 Route::get('/editmachine/{id}', [MachineController::class, 'show'])->middleware('auth');
 Route::get('/deletemachine/{id}', [MachineController::class, 'delete']);
 Route::get('/exportmachine', [MachineController::class, 'exportToExcel']);
+Route::get('/viewmachines/{name}', [MachineController::class, 'viewmachines'])->middleware('auth');;
+Route::get('/viewmachines2/{name}', [MachineController::class, 'viewmachines2'])->middleware('auth');;
+Route::get('/viewmachines3/{name}', [MachineController::class, 'viewmachines3'])->middleware('auth');;
+Route::get('/machine/add', [MachineController::class, 'add']);
+
 
 
 Route::get('/solarmachines', [SolarmachineController::class, 'index'])->middleware('auth');
@@ -129,12 +144,29 @@ Route::get('/expenses/processed', [ExpenseController::class, 'updateall']);
 Route::get('/deleteexpense/{id}', [ExpenseController::class, 'delete']);
 Route::get('/exportexpenses', [ExpenseController::class, 'exportToExcel']);
 
+//leave routing
+Route::get('/leave', [LeaveController::class, 'index'])->middleware('auth');
+Route::get('/leave/apply', [LeaveController::class, 'create'])->middleware('auth');
+Route::get('/leave/history', [LeaveController::class, 'history'])->middleware('auth');
+Route::post('/leaves', [LeaveController::class, 'store']);
+Route::get('/showleave/{id}', [LeaveController::class, 'show'])->middleware('auth');
+Route::put('/leaves/{id}', [LeaveController::class, 'update']);
+Route::get('/deleteleave/{id}', [LeaveController::class, 'delete']);
+Route::get('/exportleaves', [LeaveController::class, 'exportToExcel']);
+
 //report routing
 Route::get('/reports', [JobreportController::class, 'index'])->middleware('auth');
-Route::get('/reports/jcc', [JobreportController::class, 'jcc'])->middleware('auth');
-Route::put('/reports/create', [JobreportController::class, 'store'])->middleware('auth');
+Route::get('/reports/nonsolar', [JobreportController::class, 'nonsolar'])->middleware('auth');
+Route::get('/reports/solar', [JobreportController::class, 'solar'])->middleware('auth');
+Route::get('/reports/ups', [JobreportController::class, 'ups'])->middleware('auth');
+Route::post('/reports/create/jcc1', [JobreportController::class, 'store'])->middleware('auth');
+Route::post('/reports/create/jcc2', [JobreportController::class, 'store3'])->middleware('auth');
+Route::post('/reports/create/jcc', [JobreportController::class, 'store2'])->middleware('auth');
 Route::get('/editreport/{id}', [JobreportController::class, 'edit'])->middleware('auth');
 Route::get('/deletereport/{id}', [JobreportController::class, 'delete']);
+Route::get('/jcc1/{id}', [JobreportController::class, 'jcc1'])->middleware('auth');
+Route::get('/jcc/{id}', [JobreportController::class, 'jcc'])->middleware('auth');
+Route::get('/jcc2/{id}', [JobreportController::class, 'jcc2'])->middleware('auth');
 
 
 //site history

@@ -11,21 +11,16 @@
             </div>
           </div>
           <div class="row">
-           
+            
             <div class="col-xl-8 col-lg-8 col-md-8 d-flex flex-column mx-lg-0 mx-auto">
               <div class="card card-plain">
                 <div class="card-header pb-0 text-start">
                   <h4 class="font-weight-bolder">Sign In</h4>
+                  
                   <p class="mb-0">Enter your email and password to sign in</p>
                 </div>
                 <div class="card-body">
-                  @if (session()->has('message'))
-                  <div class="alert alert-success alert-dismissible fade show text-white " role="alert">
-                <p>{{session('message')}}</p>
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    
-                </div> 
-                @endif
+                 <x-flash-message />
                   <form role="form" action="/users/authenticate" method="post">
                     @csrf
                     <div class="mb-3">

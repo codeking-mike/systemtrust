@@ -5,6 +5,7 @@
     <div class="row">
       <div class="col-md-8">
         <div class="card">
+          <x-back-card />
           <div class="card-header pb-0">
             <div class="d-flex align-items-center">
               <p class="mb-0">Add Machine</p>
@@ -12,10 +13,23 @@
             </div>
           </div>
           <div class="card-body">
-           
+           <x-flash-message />
             <form action="/ups" method="post">
                 @csrf
               <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                      <label for="" class="form-control-lable">Client Name</label>
+                      <select name='client_name' class="form-control">
+                        @foreach ($clients as $client)
+                          
+                           <option>{{$client->client_name}}</option>  
+                          
+                        @endforeach
+                      </select>
+
+                  </div>
+              </div>
                 <div class="col-md-12">
                     <div class="form-group">
                         <label for="" class="form-control-lable">Branch Code</label>
@@ -66,7 +80,7 @@
                       <label for="example-text-input" class="form-control-label">FSE</label>
                       <select name='fse_assigned' class="form-control">
                         @foreach ($users as $fse)
-                           @if ($fse->job_description == 'engineer')
+                           @if ($fse->position == 'engineer')
                            <option>{{$fse->name}}</option>  
                            @endif 
                         @endforeach

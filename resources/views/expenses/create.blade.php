@@ -19,53 +19,39 @@
             <form action="/expenses" method="post">
                 @csrf
               <div class="row">
-                <div class="col-md-12">
-                  <div class="form-group">
-                    <label for="example-text-input" class="form-control-label">Staff Name</label>
-                    <input type="text" name="staff_name" class="form-control" value="{{auth()->user()->name}}" readonly>
-                   
-                  </div>
-                </div>
+               
                 <div class="col-md-12">
                     <div class="form-group">
                       <label for="example-text-input" class="form-control-label">Expense Date</label>
-                      
+                      <input type="hidden" name="staff_name" value="{{auth()->user()->name}}">
                       <input type="date" name="expense_date" class="form-control">
                       @error('expense_date')
                           <span class="text-danger">{{$message}}</span>
                       @enderror
                     </div>
                   </div>
-                  <div class="col-md-12">
-                    <div class="form-group">
-                      <label for="example-text-input" class="form-control-label">Expense Title</label>
-                      <input type="text" name="expense_title" class="form-control">
-                      @error('expense_title')
-                          <span class="text-danger">{{$message}}</span>
-                      @enderror
-                     
-                    </div>
-                  </div>
-                  <div class="col-md-12">
-                    <div class="form-group">
-                      <label for="example-text-input" class="form-control-label">Daily Total(Enter the total amount for the day)</label>
-                      <input type="text" name="daily_total" class="form-control">
-                      @error('daily_total')
-                          <span class="text-danger">{{$message}}</span>
-                      @enderror
-                     
-                    </div>
-                  </div>
+                 
+                  
                 
                 <div class="col-md-12">
                   <div class="form-group">
-                    <label for="example-text-input" class="form-control-label">Expense Description(seperate each desc with a comma)</label>
-                    <textarea class="form-control" name="description" cols="15" rows="10" placeholder="e.g Transport to site - N200"></textarea>
+                    <label for="example-text-input" class="form-control-label">Expense Description</label>
+                    <textarea class="form-control" name="description" cols="12" rows="7" ></textarea>
                    
                   </div>
                   @error('description')
                   <span class="text-danger">{{$message}}</span>
               @enderror
+                </div>
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label for="example-text-input" class="form-control-label">Amount</label>
+                    <input type="text" name="amount" class="form-control">
+                    @error('expense_title')
+                        <span class="text-danger">{{$message}}</span>
+                    @enderror
+                   
+                  </div>
                 </div>
                 
                 
@@ -82,7 +68,50 @@
               </div>
             </form>
               
-            
+            <div class="table-responsive p-0">
+              <table class="table align-items-center justify-content-center mb-0">
+
+                
+                <thead>
+                  <tr>
+                    
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Date</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Description</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Amount</th>
+
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Action</th>
+                    
+                  </tr>
+                </thead>
+                <tbody>
+                 
+                   @foreach ($myexpenses as $expense)
+                  
+                   <tr>
+                   
+                    <td>
+                      <p class="text-xs font-weight-bold mb-0">{{$expense['expense_date']}}</p>
+                    </td>
+                    
+                    <td>
+                      <span class="text-xs font-weight-bold">{{$expense['description']}}</span>
+                    </td>
+                    <td>
+                      <span class="text-xs font-weight-bold">{{$expense['amount']}}</span>
+                    </td>
+                    
+                    <td class="align-middle">
+                       <a class=" btn btn-success btn-sm py-1 px-2" href="/showexpense/{{$expense['id']}}">Edit</a> /
+
+                      <a class=" btn btn-danger btn-sm py-1 px-2" href="/deleteexpense/{{$expense['id']}}">Delete</a>
+                    </td>
+                  </tr>
+                 
+                  @endforeach
+                                         
+                </tbody>
+
+              </table>
            
             
             

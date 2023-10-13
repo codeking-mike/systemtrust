@@ -3,10 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Client;
 use App\Models\Machine;
+use App\Models\Jobreport;
 use App\Models\Upsmachine;
 use App\Models\Solarmachine;
 use Illuminate\Http\Request;
+use App\Models\Delistedmachine;
 use App\Exports\SolarDataExport;
 use App\Exports\MachineDataExport;
 use Maatwebsite\Excel\Facades\Excel;
@@ -25,34 +28,35 @@ class SolarmachineController extends Controller
 
     public function store(Request $request){  
       $formFields = $request->validate([
-              'branch_code'=> 'required',
-              'bm_name' => 'required',
-              'bm_number' =>'required',
-              'branch_address'=>'required',
-              'branch_state'=>'required',
-              'fse_assigned'=>'required',
-              'remarks'=>'required',
-              'inverter_brand'=> 'required',
-              'inverter_capacity' => 'required',
-              'snmp_status'=>'required',
-              'battery_spec'=>'required',
-              'battery_qty'=>'required',
-              'battery_brand'=>'required',
-              'number_of_atms'=>'required',
-              'solarpanel_type'=>'required',
-              'solarpanel_capacity'=>'required',
-              'solarpanel_number'=>'required',
-              'charge_controller'=>'required',
-              'number_of_inverter' =>'required',
-              'date_inverter_deployed'=>'required',
-              'inverter_age'=>'required',
-              'last_battery_replaced'=>'required',
-              'inverter_deployed_by'=>'required'
+              'client_name' => ['string', 'nullable'],
+              'branch_code'=> ['string', 'nullable'],
+              'bm_name' => ['string', 'nullable'],
+              'bm_number' =>['string', 'nullable'],
+              'branch_address'=>['string', 'nullable'],
+              'branch_state'=>['string', 'nullable'],
+              'fse_assigned'=>['string', 'nullable'],
+              'remarks'=>['string', 'nullable'],
+              'inverter_brand'=> ['string', 'nullable'],
+              'inverter_capacity' => ['string', 'nullable'],
+              'snmp_status'=>['string', 'nullable'],
+              'battery_spec'=>['string', 'nullable'],
+              'battery_qty'=>['string', 'nullable'],
+              'battery_brand'=>['string', 'nullable'],
+              'number_of_atms'=>['string', 'nullable'],
+              'solarpanel_type'=>['string', 'nullable'],
+              'solarpanel_capacity'=>['string', 'nullable'],
+              'solarpanel_number'=>['string', 'nullable'],
+              'charge_controller'=>['string', 'nullable'],
+              'number_of_inverter' =>['string', 'nullable'],
+              'date_inverter_deployed'=>['string', 'nullable'],
+              'inverter_age'=>['string', 'nullable'],
+              'last_battery_replaced'=>['string', 'nullable'],
+              'inverter_deployed_by'=>['string', 'nullable']
 
         ]); 
          
       Solarmachine::create($formFields);
-      return redirect('/solarmachines');
+      return back()->with('message', 'Site Added Successfully!');
       
     
 
@@ -62,14 +66,15 @@ class SolarmachineController extends Controller
         $machine = Solarmachine::find($id);
         return view('solarmachines.show', [
             'title'=>'View Machine',
-            'machine'=>$machine
-            
+            'machine'=>$machine,
+            'history'=> Jobreport::where('machine_id', $id)->get()
 
         ]);
     }
     public function create(){
         return view('solarmachines.create', [
             'users'=> User::latest()->get(),
+            'clients'=> Client::latest()->get(),
             'title'=>'Add Machine'
         ]);
     }
@@ -118,9 +123,23 @@ class SolarmachineController extends Controller
       }
 
       public function delete($id){
+        $machine = Solarmachine::find($id);
+        $formDatas = [
+            'client_name'=>$machine->client_name,
+            'branch_code'=>$machine->branch_code,
+            'branch_address'=>$machine->branch_address,
+            'branch_state'=>$machine->branch_state,
+            'fse_assigned'=>$machine->fse_assigned,
+            'remarks'=>$machine->remarks,
+            'machine_brand'=>$machine->inverter_brand,
+            'machine_capacity'=>$machine->inverter_capacity,
+            'machine_type'=>'Inverter'
+        ];
+
+        Delistedmachine::create($formDatas);
         Solarmachine::where('id', $id)->delete();
 
-        return back()->with('message', 'Machine Deleted Successfully!');
+        return redirect('/machine')->with('message', 'Machine Delisted Successfully!');
     }
 
     public function exportToExcel(){

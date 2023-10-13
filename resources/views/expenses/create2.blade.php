@@ -20,13 +20,7 @@
                 @csrf
                 @method('PUT')
               <div class="row">
-                <div class="col-md-12">
-                  <div class="form-group">
-                    <label for="example-text-input" class="form-control-label">Staff Name</label>
-                    <input type="text" name="staff_name" class="form-control" value="{{auth()->user()->name}}" readonly>
-                   
-                  </div>
-                </div>
+               
                 <div class="col-md-12">
                     <div class="form-group">
                       <label for="example-text-input" class="form-control-label">Expense Date</label>
@@ -37,20 +31,11 @@
                       @enderror
                     </div>
                   </div>
+                  
                   <div class="col-md-12">
                     <div class="form-group">
-                      <label for="example-text-input" class="form-control-label">Expense Title</label>
-                      <input type="text" name="expense_title" class="form-control" value="{{$expenses->expense_title}}">
-                      @error('expense_title')
-                          <span class="text-danger">{{$message}}</span>
-                      @enderror
-                     
-                    </div>
-                  </div>
-                  <div class="col-md-12">
-                    <div class="form-group">
-                      <label for="example-text-input" class="form-control-label">Daily Total(Enter the total amount for the day)</label>
-                      <input type="text" name="daily_total" class="form-control" value="{{$expenses->daily_total}}">
+                      <label for="example-text-input" class="form-control-label">Amount</label>
+                      <input type="text" name="amount" class="form-control" value="{{$expenses->amount}}">
                       @error('daily_total')
                           <span class="text-danger">{{$message}}</span>
                       @enderror

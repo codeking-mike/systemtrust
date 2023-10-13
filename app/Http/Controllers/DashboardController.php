@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Task;
 use App\Models\User;
+use App\Models\Expense;
 use App\Models\Machine;
 use App\Models\Attendance;
 use App\Models\Upsmachine;
@@ -24,6 +25,7 @@ class DashboardController extends Controller
             'tasklist'=>Task::where('fse_assigned', auth()->user()->name)->where('task_status', 'in progress')->get(),
             'tasks'=> $count=Task::where('task_status', 'in progress')->count(),
             'mytasks'=> $count=Task::where('task_status', 'in progress')->where('fse_assigned', auth()->user()->name)->count(),
+            'myexpenses'=> $count=Expense::where('status', 'pending')->where('staff_name', auth()->user()->name)->count(),
             'attendance'=> Attendance::where('staff_name', auth()->user()->name)->where('att_date', date('Y-m-d'))->get(),
             'total'=>$count=User::all()->count(),
             'present'=>$count=Attendance::where('att_date', date('Y-m-d'))->count(),

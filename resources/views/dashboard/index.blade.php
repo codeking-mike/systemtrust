@@ -1,6 +1,7 @@
 @extends('layout2')
 
 @section('content')
+ <x-flash-message />
     <!-- End Navbar -->
     <div class="container-fluid py-4">
        <!-- Site stats components -->
@@ -10,7 +11,7 @@
    <div class="row" style="margin-bottom: 20px">
     <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
       <div class="card">
-      
+      <a href="/users">
         <div class="card-body p-3">
           <div class="row">
             <div class="col-8">
@@ -30,12 +31,12 @@
             </div>
           </div>
         </div>
-     
+      </a>
       </div>
     </div>
     <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
       <div class="card">
-        <a href="/solarmachines">
+        <a href="#">
         <div class="card-body p-3">
           <div class="row">
             <div class="col-8">
@@ -59,7 +60,7 @@
     </div>
     <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
       <div class="card">
-        <a href="/ups">
+        <a href="#">
         <div class="card-body p-3">
           <div class="row">
             <div class="col-8">
@@ -142,7 +143,7 @@
        
         <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
           <div class="card">
-            <a href="/ups">
+            <a href="/tasks/list">
             <div class="card-body p-3">
               <div class="row">
                 <div class="col-8">
@@ -151,6 +152,31 @@
                     <h5 class="font-weight-bolder">
                      
                       {{$mytasks}}
+                    </h5>
+                    
+                  </div>
+                </div>
+                <div class="col-4 text-end">
+                  <div class="icon icon-shape bg-gradient-primary shadow-primary text-center rounded-circle">
+                    <i class="ni ni-world text-lg opacity-10" aria-hidden="true"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </a>
+          </div>
+        </div>
+        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+          <div class="card">
+            <a href="/expenses">
+            <div class="card-body p-3">
+              <div class="row">
+                <div class="col-8">
+                  <div class="numbers">
+                    <p class="text-sm mb-0 text-uppercase font-weight-bold">My Expenses</p>
+                    <h5 class="font-weight-bolder">
+                     
+                      {{$myexpenses}}
                     </h5>
                     
                   </div>
@@ -250,7 +276,7 @@
                           <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Employee</th>
                           <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Time-in</th>
                           
-                          <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Total Hours</th>
+                          <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Time-Out</th>
                           
                         </tr>
                       </thead>

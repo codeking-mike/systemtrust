@@ -100,23 +100,24 @@
               <table class="table align-items-center mb-0" id="myTable">
                 <thead>
                   <tr>
-                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Branch Code</th>
-                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">BM's Name</th>
-                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">BM's Number</th>
-                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Location</th>
-                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">State</th>
-                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">UPS Brand</th>
-                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">UPS Capacity</th>
-                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Number of Batteries</th>
-                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">SNMP Status</th>
-                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Battery Capacity</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">Client Name</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">Branch Code</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">BM's Name</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">BM's Number</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">Location</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">State</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">UPS Brand</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">UPS Capacity</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">Number of Batteries</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">SNMP Status</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">Battery Capacity</th>
                     
-                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Battery Brand</th>
-                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Load</th>
-                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Year of Installation</th>
-                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Serial Number</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">Battery Brand</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">Load</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">Year of Installation</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">Serial Number</th>
                     
-                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">Action</th>
                     
                   </tr>
                 </thead>
@@ -124,69 +125,69 @@
                   @foreach ( $mymachines as $machine)
                   <tr>
                     
-                        
+                    <td>
+                      <p class="text-xs font-weight-bold mb-0 text-center">{{$machine['client_name']}}</p>
+                      
+                    </td>    
                    
                     <td>
-                      <div class="d-flex px-2 py-1">
-                        
-                        <div class="d-flex flex-column justify-content-center">
+                     
                           
-                          <p class="text-xs text-secondary mb-0"><a href="editups/{{$machine['id']}}">{{$machine['branch_code']}}</a></p>
-                        </div>
-                      </div>
+                          <p class="text-xs font-weight-bold mb-0 text-center"><a href="editups/{{$machine['id']}}">{{$machine['branch_code']}}</a></p>
+                        
                     </td>
                     <td>
-                      <p class="text-xs font-weight-bold mb-0">{{$machine['bm_name']}}</p>
+                      <p class="text-xs font-weight-bold mb-0 text-center">{{$machine['bm_name']}}</p>
                       
                     </td>
                     <td>
-                        <p class="text-xs font-weight-bold mb-0">{{$machine['bm_number']}}</p>
+                        <p class="text-xs font-weight-bold mb-0 text-center">{{$machine['bm_number']}}</p>
                         
                       </td>
                       <td>
-                        <p class="text-xs font-weight-bold mb-0">{{$machine['branch_address']}}</p>
+                        <p class="text-xs font-weight-bold mb-0 text-center">{{$machine['branch_address']}}</p>
                         
                       </td>
                       <td>
-                        <p class="text-xs font-weight-bold mb-0">{{$machine['branch_state']}}</p>
+                        <p class="text-xs font-weight-bold mb-0 text-center">{{$machine['branch_state']}}</p>
                         
                       </td>
                      
                       <td>
-                        <p class="text-xs font-weight-bold mb-0">{{$machine['ups_brand']}}</p>
+                        <p class="text-xs font-weight-bold mb-0 text-center">{{$machine['ups_brand']}}</p>
                         
                       </td>
                       <td>
-                        <p class="text-xs font-weight-bold mb-0">{{$machine['ups_capacity']}}</p>
+                        <p class="text-xs font-weight-bold mb-0 text-center">{{$machine['ups_capacity']}}</p>
                         
                       </td>
                       <td>
-                        <p class="text-xs font-weight-bold mb-0">{{$machine['number_of_batteries']}}</p>
+                        <p class="text-xs font-weight-bold mb-0 text-center">{{$machine['number_of_batteries']}}</p>
                         
                       </td>
                       <td>
-                        <p class="text-xs font-weight-bold mb-0">{{$machine['snmp_status']}}</p>
+                        <p class="text-xs font-weight-bold mb-0 text-center">{{$machine['snmp_status']}}</p>
                         
                       </td>
                       <td>
-                        <p class="text-xs font-weight-bold mb-0">{{$machine['battery_capacity']}}</p>
+                        <p class="text-xs font-weight-bold mb-0 text-center">{{$machine['battery_capacity']}}</p>
                         
                       </td>
                       <td>
-                        <p class="text-xs font-weight-bold mb-0">{{$machine['battery_brand']}}</p>
+                        <p class="text-xs font-weight-bold mb-0 text-center">{{$machine['battery_brand']}}</p>
                         
                       </td>
                       
                       <td>
-                        <p class="text-xs font-weight-bold mb-0">{{$machine['load']}}</p>
+                        <p class="text-xs font-weight-bold mb-0 text-center">{{$machine['load']}}</p>
                         
                       </td>
                       <td>
-                        <p class="text-xs font-weight-bold mb-0">{{$machine['year_of_installation']}}</p>
+                        <p class="text-xs font-weight-bold mb-0 text-center">{{$machine['year_of_installation']}}</p>
                         
                       </td>
                       <td>
-                        <p class="text-xs font-weight-bold mb-0">{{$machine['serial_number']}}</p>
+                        <p class="text-xs font-weight-bold mb-0 text-center">{{$machine['serial_number']}}</p>
                         
                       </td>
                      

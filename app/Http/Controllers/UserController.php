@@ -30,6 +30,15 @@ class UserController extends Controller
             'title'=>'Edit Profile'
         ]);
     }
+
+    //settings
+    public function settings($id){
+        $user = User::find($id);
+        return view('users.settings', [
+            'emp'=> $user,
+            'title'=>'Change Password'
+        ]);
+    }
     public function create(){
         return view('users.create', [
             'title'=>'Add New User'
@@ -42,16 +51,14 @@ class UserController extends Controller
             'name'=> ['required', 'min:3' ],
             'email'=> ['required', 'email', Rule::unique('users', 'email')],
             'password'=>['required', 'min:4'],
-            'phone'=> ['string', 'min:11' ],
-            'address'=>'string',
-            'staff_dob'=> 'string',
-            'marital_status'=>'string',
-            'position'=>'string',
-            'department'=> 'string',
+            'phone'=> ['string', 'min:11', 'nullable' ],
+            'address'=>['string', 'nullable'],
+            'staff_dob'=> ['string', 'nullable'],
+            'marital_status'=>['string', 'nullable'],
+            'position'=>['string', 'nullable'],
+            'emp_date'=> ['string', 'nullable'],
+            'cug'=> ['string', 'nullable'],
             'role'=>'string'
-           
-           
-           
         ]);
 
         //hash password
@@ -76,9 +83,12 @@ class UserController extends Controller
             'name'=> ['required', 'min:3' ],
             'email'=> ['required', 'email'],
             'phone'=> ['required', 'min:11' ],
-            'address'=>'required',
-            'staff_dob'=> 'required',
-            'marital_status'=>'required'
+            'address'=>['nullable', 'string'],
+            'staff_dob'=> ['nullable', 'string'],
+            'marital_status'=>['nullable', 'string'],
+            'anniversary'=>['nullable', 'string'],
+            'alias'=> ['string', 'nullable' ],
+            'cug'=> ['string', 'nullable' ]
 
         ]);
 
@@ -89,7 +99,17 @@ class UserController extends Controller
             $formFields['profilepic'] = $request->file('profilepic')->store('userimages', 'public');
         }
 
-        //create user 
+        //update user 
+        /*
+        $user->name = $formFields['name'];
+        $user->email = $formFields['email'];
+        $user->phone = $formFields['phone'];
+        $user->address = $formFields['address'];
+        $user->staff_dob = $formFields['staff_dob'];
+        $user->marital_status = $formFields['marital_status'];
+        $user->anniversary = $formFields['anniversary']; */
+        
+
         $user->update($formFields);
 
         //login user automatically
@@ -102,6 +122,35 @@ class UserController extends Controller
     }
 
    
+//update password
+public function password(Request $request, $id){
+    $user = User::find($id);
+    if($request->input('password') === $request->input('pass2')){
+
+        $formFields = $request->validate([
+            'password'=> ['required', 'min:5' ]
+        ]);
+
+        $formFields['password'] = bcrypt($formFields['password']);
+
+        $user->password = $formFields['password'];
+
+        $user->update();
+
+        auth()->logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect('/')->with('message', 'Password Changed Successfully! Kindly login to continue');
+
+        
+    }else{
+        return back()->with('message', 'Password and confirm password does not match!');
+    }
+
+
+    
+}
 
 
     //Log out

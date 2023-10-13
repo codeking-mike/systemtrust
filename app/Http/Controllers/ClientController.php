@@ -16,9 +16,37 @@ class ClientController extends Controller
             'clients'=>Client::latest()->get(),
             'corp'=>$count=Client::where('client_type','corporate')->count(),
             'home'=>$count=Client::where('client_type','home')->count(),
+            'nonsolar'=>Machine::latest()->get(),
+            'solar'=>Solarmachine::latest()->get(),
+            'ups'=>Upsmachine::latest()->get()
+
         ]);
     }
 
+    public function home(){
+        return view('clients.home', [
+            'title'=>'Residential Clients',
+            'clients'=>Client::where('client_type','home')->get(),
+            'nonsolar'=>Machine::latest()->get(),
+            'solar'=>Solarmachine::latest()->get(),
+            'ups'=>Upsmachine::latest()->get()
+
+        ]);
+    }
+
+    public function corporate(){
+        return view('clients.corporate', [
+            'title'=>'Corporate Clients',
+            'clients'=>Client::where('client_type','corporate')->get(),
+            'nonsolar'=>Machine::latest()->get(),
+            'solar'=>Solarmachine::latest()->get(),
+            'ups'=>Upsmachine::latest()->get()
+
+        ]);
+    }
+   
+    //get the number of machine a client has
+   
     public function show(Request $request, $id){
         $client = Client::find($id);
         return view('clients.show', [
@@ -26,6 +54,14 @@ class ClientController extends Controller
             'nonsolar'=>$count=Machine::where('client_name', $client->client_name)->count(),
             'solar'=>$count=Solarmachine::where('client_name',$client->client_name)->count(),
             'ups'=>$count=Upsmachine::where('client_name',$client->client_name)->count(),
+            'client'=>$client
+        ]);
+    }
+  
+    public function edit(Request $request, $id){
+        $client = Client::find($id);
+        return view('clients.edit', [
+            'title'=>'Clients',
             'client'=>$client
         ]);
     }
@@ -43,10 +79,10 @@ class ClientController extends Controller
         $formFields = $request->validate([
             'client_name'=> 'required',
             'client_location' => 'required',
-            'solution' =>'required',
+            'solution' =>['string', 'nullable'],
             'client_type'=>'required',
-            'contact_email'=> 'required',
-            'contact_phone'=> 'required',
+            'contact_email'=> ['string', 'nullable'],
+            'contact_phone'=> ['string', 'nullable']
             
         
 
@@ -54,7 +90,7 @@ class ClientController extends Controller
       
       Client::create($formFields);
 
-      return redirect('/clients');
+      return back()->with('message', 'Client Added Successfully!');
     }
 
     public function delete($id){
@@ -67,23 +103,21 @@ class ClientController extends Controller
         $client = Client::find($id);
         $formFields = $request->validate([
             
-            'client_location' => 'required',
-            'solution' =>'required',
-            'contact_email'=> 'required',
-            'contact_phone'=> 'required',
-            
-        
+            'client_location' => ['string', 'nullable'],
+            'solution' =>['string', 'nullable'],
+            'contact_email'=> ['string', 'nullable'],
+            'contact_phone'=> ['string', 'nullable']
 
       ]);
 
       $client->client_location = $formFields['client_location'];
       $client->solution = $formFields['solution'];
-      $client->client_email = $formFields['client_email'];
-      $client->client_phone = $formFields['client_phone'];
+      $client->contact_email = $formFields['contact_email'];
+      $client->contact_phone = $formFields['contact_phone'];
       
       $client->update();
 
-      return redirect('/clients');
+      return back()->with('message', 'Client Updated Successfully!');
     }
 
 }

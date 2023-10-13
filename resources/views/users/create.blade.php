@@ -3,12 +3,13 @@
 @section('content')
 <div class="container-fluid py-4">
     <div class="row">
-      <x-flash-message />
+      
       <div class="col-md-8">
         <div class="card">
           <div class="card-header pb-0">
+            <x-back-card />
             <div class="d-flex align-items-center">
-              <p class="mb-0">Add New User</p>
+              <h4 class="card-title p-1">Add New User</h4>
               
             </div>
           </div>
@@ -26,20 +27,31 @@
                   @enderror
                   </div>
               </div>
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label for="example-text-input" class="form-control-label">Email Address</label>
+                  
+                  <input type="email" name="email" class="form-control" value="{{old('email')}}">
+                  @error('email')
+                      <span class="text-danger">{{$message}}</span>
+                  @enderror
+              </div>
+              </div>
+              
               <div class="col-md-12 row">
-                  <div class="form-group col-md-5">
-                      <label for="example-text-input" class="form-control-label">Email Address</label>
-                      
-                      <input type="email" name="email" class="form-control" value="{{old('email')}}">
-                      @error('email')
-                          <span class="text-danger">{{$message}}</span>
-                      @enderror
-                  </div>
+                <div class="form-group col-md-5">
+                  <label for="example-text-input" class="form-control-label">Phone Number</label>
+                  
+                  <input type="text" name="phone" class="form-control" value="{{old('phone')}}">
+                  @error('phone')
+                      <span class="text-danger">{{$message}}</span>
+                  @enderror
+                </div> 
                 
                   <div class="form-group col-md-5">
-                    <label for="example-text-input" class="form-control-label">Phone Number</label>
+                    <label for="example-text-input" class="form-control-label">CUG Number</label>
                     
-                    <input type="text" name="phone" class="form-control" value="{{old('phone')}}">
+                    <input type="text" name="cug" class="form-control" value="{{old('cug')}}">
                     @error('phone')
                         <span class="text-danger">{{$message}}</span>
                     @enderror
@@ -82,9 +94,9 @@
                      
                   </div>
                   <div class="form-group col-md-5">
-                    <label for="example-text-input" class="form-control-label">Department</label>
+                    <label for="example-text-input" class="form-control-label">Date of Employment</label>
                     
-                    <input type="text" name="department" class="form-control">
+                    <input type="text" name="emp_date" class="form-control">
                    
                   </div>
                   
@@ -94,7 +106,6 @@
                       <label for="example-text-input" class="form-control-label">Staff Role</label>
                       
                       <select name="role" class="select form-control">
-                        <option>owner</option>
                         <option>admin</option>
                         <option selected>user</option>
                       </select>
@@ -125,50 +136,6 @@
               </div>
             </div>
           </form>
-        </div>
-      </div>
-<!--chainge pasword form-->
-      <div class="fixed-plugin">
-        
-        <div class="card shadow-lg">
-          <div class="card-header pb-0 pt-3 ">
-            
-            <h4 class="card-title">Change Password</h4>
-          </div>
-          <hr class="horizontal dark my-1">
-          <div class="card-body pt-sm-3 pt-0 overflow-auto">
-            <form action="" method="post">
-            <div class="row">
-              <div class="col-md-12">
-                <div class="form-group">
-                  <label for="example-text-input" class="form-control-label">New Password</label>
-                  
-                  <input type="text" name="pass" class="form-control">
-                </div>
-              </div>
-              <div class="col-md-12">
-                <div class="form-group">
-                  <label for="example-text-input" class="form-control-label">Confirm Password</label>
-                  
-                  <input type="text" name="pass2" class="form-control">
-                </div>
-              </div>
-              <div class="col-md-12">
-                <div class="form-group">
-                                    
-                  <input type="submit" name="submit" class="btn btn-lg btn-danger" value="Change Password">
-                </div>
-              </div>
-            </div>
-          </form>
-            
-           
-            
-            
-            
-           
-            
-          </div>
         </div>
       </div>
     

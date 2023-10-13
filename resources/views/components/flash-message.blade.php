@@ -1,7 +1,6 @@
 @if (session()->has('message'))
-   <div class="modal alert alert-success alert-dismissible fade show " role="alertdialog">
-<p>{{session('message')}}</p>
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+   <div x-data="{show: true}" x-init="setTimeout(()=> show = false, 3000)" x-show="show" class="alert alert-info text-white px-3 py-3 ">
+    <p>{{session('message')}}</p>
+    
 </div> 
 @endif

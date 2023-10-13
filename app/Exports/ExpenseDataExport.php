@@ -19,9 +19,8 @@ class ExpenseDataExport implements FromCollection, WithHeadings
         return [
               'Staff Name',
               'Expense Date',
-              'Expense Title',
               'Description',
-              'Daily Total'
+              'Amount'
              
               
         ];

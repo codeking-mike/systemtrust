@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Exports\MachineDataExport;
+use Excel;
 use App\Models\User;
+use App\Models\Client;
 use App\Models\Machine;
+use App\Models\Jobreport;
 use App\Models\Upsmachine;
 use App\Models\Solarmachine;
 use Illuminate\Http\Request;
-use Excel;
+use App\Models\Delistedmachine;
+use App\Exports\MachineDataExport;
 
 class MachineController extends Controller
 {
@@ -16,10 +19,13 @@ class MachineController extends Controller
         
         return view('machine.index', [
             'title' => 'Non-Solar Sites',
+            'clients'=>Client::latest()->get(),
             'machines'=> Machine::latest()->paginate(60),
             'nonsolar'=>$count=Machine::all()->count(),
             'solar'=>$count=Solarmachine::all()->count(),
             'ups'=>$count=Upsmachine::all()->count(),
+            'dels'=>$count=Delistedmachine::all()->count()
+
            
         ]);
     }
@@ -36,33 +42,68 @@ class MachineController extends Controller
         ]);
     }
 
+    public function viewmachines($name){
+        return view('machine.viewmachines', [
+            'title' => 'Client Sitelist',
+            'client'=>$name,
+            'mymachines'=> Machine::where('client_name', $name)->paginate(60),
+            'mynonsolar'=>$count=Machine::where('client_name', $name)->count(),
+            'mysolar'=>$count=Solarmachine::where('client_name', $name)->count(),
+            'myups'=>$count=Upsmachine::where('client_name', $name)->count(),
+            'dels'=>$count=Delistedmachine::where('client_name', $name)->count()
+        ]);
+    }
+
+    public function viewmachines2($name){
+        return view('machine.viewmachines2', [
+            'title' => 'Client Sitelist',
+            'client'=>$name,
+            'mymachines'=> Solarmachine::where('client_name', $name)->paginate(60),
+            'mynonsolar'=>$count=Machine::where('client_name', $name)->count(),
+            'mysolar'=>$count=Solarmachine::where('client_name', $name)->count(),
+            'myups'=>$count=Upsmachine::where('client_name', $name)->count(),
+        ]);
+    }
+    public function viewmachines3($name){
+        return view('machine.viewmachines3', [
+            'title' => 'Client Sitelist',
+            'client'=>$name,
+            'mymachines'=> Upsmachine::where('client_name', $name)->paginate(60),
+            'mynonsolar'=>$count=Machine::where('client_name', $name)->count(),
+            'mysolar'=>$count=Solarmachine::where('client_name', $name)->count(),
+            'myups'=>$count=Upsmachine::where('client_name', $name)->count(),
+        ]);
+    }
+
+
     public function store(Request $request){
 
         
       $formDatas = $request->validate([
-              'branch_code'=> 'required',
-              'bm_name' => 'required',
-              'bm_number' =>'required',
-              'branch_address'=>'required',
-              'branch_state'=>'required',
-              'fse_assigned'=>'required',
-              'remarks'=>'required',
-              'inverter_brand'=> 'required',
-              'inverter_capacity' => 'required',
-              'number_of_inverter' =>'required',
-              'snmp_status'=>'required',
-              'battery_spec'=>'required',
-              'battery_qty'=>'required',
-              'battery_brand'=>'required',
-              'load'=>'required',
-              'date_deployed'=>'required',
-              'last_battery_replaced'=>'required',
-              'inverter_deployed_by'=>'required'
+              'client_name'=> ['string', 'nullable'],
+              'branch_code'=>  ['string', 'nullable'],
+              'bm_name' =>  ['string', 'nullable'],
+              'bm_number' => ['string', 'nullable'],
+              'branch_address'=> ['string', 'nullable'],
+              'branch_state'=> ['string', 'nullable'],
+              'fse_assigned'=> ['string', 'nullable'],
+              'remarks'=> ['string', 'nullable'],
+              'inverter_brand'=>  ['string', 'nullable'],
+              'inverter_capacity' =>  ['string', 'nullable'],
+              'number_of_inverter' => ['string', 'nullable'],
+              'snmp_status'=> ['string', 'nullable'],
+              'battery_spec'=> ['string', 'nullable'],
+              'battery_qty'=> ['string', 'nullable'],
+              'battery_brand'=> ['string', 'nullable'],
+              'load'=> ['string', 'nullable'],
+              'date_deployed'=> ['string', 'nullable'],
+              'last_battery_replaced'=> ['string', 'nullable'],
+              'inverter_deployed_by'=> ['string', 'nullable']
 
         ]); 
          
       Machine::create($formDatas);
-      return redirect('/machine');
+      return back()->with('message', 'Site Added Succesfully!');
       
       
 
@@ -72,7 +113,8 @@ class MachineController extends Controller
         $machine = Machine::find($id);
         return view('machine.show', [
             'title'=>'View Machine',
-            'machine'=>$machine
+            'machine'=>$machine,
+            'history'=> Jobreport::where('machine_id', $id)->get()
             
 
         ]);
@@ -80,6 +122,13 @@ class MachineController extends Controller
     public function create(){
         return view('machine.create', [
             'users'=> User::latest()->get(),
+            'clients'=> Client::latest()->get(),
+            'title'=>'Add Machine'
+        ]);
+    }
+
+    public function add(){
+        return view('machine.add', [
             'title'=>'Add Machine'
         ]);
     }
@@ -90,6 +139,11 @@ class MachineController extends Controller
     public function update(Request $request, $id){
         $machine = Machine::find($id);
         $formFields = $request->validate([
+            'branch_code'=>  ['string', 'nullable'],
+            'bm_name' =>  ['string', 'nullable'],
+            'bm_number' => ['string', 'nullable'],
+            'branch_address'=> ['string', 'nullable'],
+            'branch_state'=> ['string', 'nullable'],
               'remarks'=>'required',
               'inverter_brand'=> 'required',
               'inverter_capacity' => 'required',
@@ -104,6 +158,11 @@ class MachineController extends Controller
               'inverter_deployed_by'=>'required'
 
         ]);
+        $machine->branch_code = $formFields['branch_code'];
+        $machine->bm_name = $formFields['bm_name'];
+        $machine->bm_number = $formFields['bm_number'];
+        $machine->branch_address = $formFields['branch_address'];
+        $machine->branch_state = $formFields['branch_state'];
         $machine->remarks = $formFields['remarks'];
         $machine->inverter_brand = $formFields['inverter_brand'];
         $machine->inverter_capacity = $formFields['inverter_capacity'];
@@ -131,9 +190,23 @@ class MachineController extends Controller
 
 
     public function delete($id){
+        $machine = Machine::find($id);
+        $formDatas = [
+            'client_name'=>$machine->client_name,
+            'branch_code'=>$machine->branch_code,
+            'branch_address'=>$machine->branch_address,
+            'branch_state'=>$machine->branch_state,
+            'fse_assigned'=>$machine->fse_assigned,
+            'remarks'=>$machine->remarks,
+            'machine_brand'=>$machine->inverter_brand,
+            'machine_capacity'=>$machine->inverter_capacity,
+            'machine_type'=>'Inverter'
+        ];
+
+        Delistedmachine::create($formDatas);
         Machine::where('id', $id)->delete();
 
-        return back()->with('message', 'Machine Deleted Successfully!');
+        return redirect('/machine')->with('message', 'Machine Delisted Successfully!');
     }
 
     public function exportToExcel(){

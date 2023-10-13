@@ -8,7 +8,7 @@
   <div class="row" style="margin-bottom: 20px">
     <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
       <div class="card">
-        <a href="/machines/list">
+        <a href="/machine/list">
         <div class="card-body p-3">
           <div class="row">
             <div class="col-8">
@@ -100,28 +100,29 @@
               <table class="table align-items-center mb-0" id="myTable">
                 <thead>
                   <tr>
-                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Branch Code</th>
-                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">BM's Name</th>
-                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">BM's Number</th>
-                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Location</th>
-                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">State</th>
-                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">FSE Assigned</th>
-                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Inverter Brand</th>
-                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Inverter Capacity</th>
-                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">SNMP Status</th>
-                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Battery Spec</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">Client Name</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">Branch Code</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">BM's Name</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">BM's Number</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">Location</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">State</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">FSE Assigned</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">Inverter Brand</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">Inverter Capacity</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">SNMP Status</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">Battery Spec</th>
                     
-                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">No of Battery</th>
-                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Load</th>
-                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Solar Panel Type</th>
-                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Solar Panel Capacity</th>
-                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">No of Panels</th>
-                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Charge Controller</th>
-                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">No of Inverter</th>
-                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Inverter Deployed</th>
-                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Inverter Age</th>
-                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Last Battery Replaced</th>
-                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Inverter Deployed By:</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">No of Battery</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">Load</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">Solar Panel Type</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">Solar Panel Capacity</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">No of Panels</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">Charge Controller</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">No of Inverter</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">Inverter Deployed</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">Inverter Age</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">Last Battery Replaced</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">Inverter Deployed By:</th>
                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
                     
                   </tr>
@@ -130,97 +131,97 @@
                   @foreach ( $mymachines as $machine)
                   <tr>
                     
-                        
+                    <td>
+                      <p class="text-xs font-weight-bold mb-0 text-center">{{$machine['client_name']}}</p>
+                      
+                    </td>  
                    
                     <td>
-                      <div class="d-flex px-2 py-1">
-                        
-                        <div class="d-flex flex-column justify-content-center">
+                     
                           
-                          <p class="text-xs text-secondary mb-0"><a href="editsolar/{{$machine['id']}}">{{$machine['branch_code']}}</a></p>
-                        </div>
-                      </div>
+                          <p class="text-xs text-secondary mb-0 text-center"><a href="#">{{$machine['branch_code']}}</a></p>
+                       
                     </td>
                     <td>
-                      <p class="text-xs font-weight-bold mb-0">{{$machine['bm_name']}}</p>
+                      <p class="text-xs font-weight-bold mb-0 text-center">{{$machine['bm_name']}}</p>
                       
                     </td>
                     <td>
-                        <p class="text-xs font-weight-bold mb-0">{{$machine['bm_number']}}</p>
+                        <p class="text-xs font-weight-bold mb-0 text-center">{{$machine['bm_number']}}</p>
                         
                       </td>
                       <td>
-                        <p class="text-xs font-weight-bold mb-0">{{$machine['branch_address']}}</p>
+                        <p class="text-xs font-weight-bold mb-0 text-center">{{$machine['branch_address']}}</p>
                         
                       </td>
                       <td>
-                        <p class="text-xs font-weight-bold mb-0">{{$machine['branch_state']}}</p>
+                        <p class="text-xs font-weight-bold mb-0 text-center">{{$machine['branch_state']}}</p>
                         
                       </td>
                       <td>
-                        <p class="text-xs font-weight-bold mb-0">{{$machine['fse_assigned']}}</p>
+                        <p class="text-xs font-weight-bold mb-0 text-center">{{$machine['fse_assigned']}}</p>
                         
                       </td>
                       <td>
-                        <p class="text-xs font-weight-bold mb-0">{{$machine['inverter_brand']}}</p>
+                        <p class="text-xs font-weight-bold mb-0 text-center">{{$machine['inverter_brand']}}</p>
                         
                       </td>
                       <td>
-                        <p class="text-xs font-weight-bold mb-0">{{$machine['inverter_capacity']}}</p>
-                        
-                      </td>
-                      
-                      <td>
-                        <p class="text-xs font-weight-bold mb-0">{{$machine['snmp_status']}}</p>
-                        
-                      </td>
-                      <td>
-                        <p class="text-xs font-weight-bold mb-0">{{$machine['battery_brand']}} {{$machine['battery_spec']}}</p>
-                        
-                      </td>
-                      <td>
-                        <p class="text-xs font-weight-bold mb-0">{{$machine['battery_qty']}}</p>
+                        <p class="text-xs font-weight-bold mb-0 text-center">{{$machine['inverter_capacity']}}</p>
                         
                       </td>
                       
                       <td>
-                        <p class="text-xs font-weight-bold mb-0">{{$machine['number_of_atms']}}</p>
+                        <p class="text-xs font-weight-bold mb-0 text-center">{{$machine['snmp_status']}}</p>
                         
                       </td>
                       <td>
-                        <p class="text-xs font-weight-bold mb-0">{{$machine['solarpanel_type']}}</p>
+                        <p class="text-xs font-weight-bold mb-0 text-center">{{$machine['battery_brand']}} {{$machine['battery_spec']}}</p>
                         
                       </td>
                       <td>
-                        <p class="text-xs font-weight-bold mb-0">{{$machine['solarpanel_capacity']}}</p>
+                        <p class="text-xs font-weight-bold mb-0 text-center">{{$machine['battery_qty']}}</p>
+                        
+                      </td>
+                      
+                      <td>
+                        <p class="text-xs font-weight-bold mb-0 text-center">{{$machine['number_of_atms']}}</p>
                         
                       </td>
                       <td>
-                        <p class="text-xs font-weight-bold mb-0">{{$machine['solarpanel_number']}}</p>
+                        <p class="text-xs font-weight-bold mb-0 text-center">{{$machine['solarpanel_type']}}</p>
                         
                       </td>
                       <td>
-                        <p class="text-xs font-weight-bold mb-0">{{$machine['charge_controller']}}</p>
+                        <p class="text-xs font-weight-bold mb-0 text-center">{{$machine['solarpanel_capacity']}}</p>
                         
                       </td>
                       <td>
-                        <p class="text-xs font-weight-bold mb-0">{{$machine['number_of_inverter']}}</p>
+                        <p class="text-xs font-weight-bold mb-0 text-center">{{$machine['solarpanel_number']}}</p>
                         
                       </td>
                       <td>
-                        <p class="text-xs font-weight-bold mb-0">{{$machine['date_inverter_deployed']}}</p>
+                        <p class="text-xs font-weight-bold mb-0 text-center">{{$machine['charge_controller']}}</p>
                         
                       </td>
                       <td>
-                        <p class="text-xs font-weight-bold mb-0">{{$machine['inverter_age']}}</p>
+                        <p class="text-xs font-weight-bold mb-0 text-center">{{$machine['number_of_inverter']}}</p>
                         
                       </td>
                       <td>
-                        <p class="text-xs font-weight-bold mb-0">{{$machine['last_battery_replaced']}}</p>
+                        <p class="text-xs font-weight-bold mb-0 text-center">{{$machine['date_inverter_deployed']}}</p>
                         
                       </td>
                       <td>
-                        <p class="text-xs font-weight-bold mb-0">{{$machine['inverter_deployed_by']}}</p>
+                        <p class="text-xs font-weight-bold mb-0 text-center">{{$machine['inverter_age']}}</p>
+                        
+                      </td>
+                      <td>
+                        <p class="text-xs font-weight-bold mb-0 text-center">{{$machine['last_battery_replaced']}}</p>
+                        
+                      </td>
+                      <td>
+                        <p class="text-xs font-weight-bold mb-0 text-center">{{$machine['inverter_deployed_by']}}</p>
                         
                       </td>
                     

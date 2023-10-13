@@ -7,7 +7,7 @@
    <div class="row" style="margin-bottom: 20px">
     <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
       <div class="card">
-      
+      <a href="/viewmachines/{{$client->client_name}}">
         <div class="card-body p-3">
           <div class="row">
             <div class="col-8">
@@ -27,12 +27,12 @@
             </div>
           </div>
         </div>
-     
+      </a>
       </div>
     </div>
     <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
       <div class="card">
-        <a href="/solarmachines">
+        <a href="/viewmachines2/{{$client->client_name}}">
         <div class="card-body p-3">
           <div class="row">
             <div class="col-8">
@@ -56,7 +56,7 @@
     </div>
     <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
       <div class="card">
-        <a href="/ups">
+        <a href="/viewmachines3/{{$client->client_name}}">
         <div class="card-body p-3">
           <div class="row">
             <div class="col-8">
@@ -82,66 +82,68 @@
 
   </div>
     <div class="row">
-      <div class="col-12">
-        <div class="card mb-4">
-          <div class="card-header pb-0">
-            <h6>Client: {{$client->client_name}}</h6>
-            <div class="d-flex align-items-center">
-                
-                
-              </div>
+      <div class="col-md-12 m-3">
+        <div class="card mb-4 p-4">
+          <div class="card-header pb-0" >
+            <x-back-card />
+            <h6>Client Name: {{$client->client_name}}</h6>
+           
           </div>
           <div class="card-body px-0 pt-0 pb-2">
-            @if (session()->has('message'))
-              
-            <p class="text-danger">{{session('message')}}</p>
-            @endif
+           
+            <x-flash-message />
             <form action="/clients/{{$client->id}}" method="post">
                 @csrf
                 @method('PUT')
               <div class="row">
-                
-                
-                <div class="col-md-12">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="example-text-input" class="form-control-label">Client Name</label>
+                    <input type="text" name="client_name" class="form-control" value="{{$client->client_name}}">
+                   
+                  </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="example-text-input" class="form-control-label">Client Type</label>
+                      <input type="text" name="client_type" class="form-control" value="{{$client->client_type}}">
+                   
+                    
+                     
+                    </div>
+                  </div>
+                <div class="col-md-6">
                     <div class="form-group">
                       <label for="example-text-input" class="form-control-label">Address</label>
                       
-                      <input type="text" name="client_location" class="form-control">
-                      @error('client_location')
-                          <span class="text-danger">{{$message}}</span>
-                      @enderror
-                    </div>
-                  </div>
-                  <div class="col-md-12">
-                    <div class="form-group">
-                      <label for="example-text-input" class="form-control-label">Contact number</label>
-                      <input type="text" name="contact_phone" class="form-control">
+                      <input type="text" name="client_location" class="form-control" value="{{$client->client_location}}">
                      
                     </div>
-                    @error('contact_phone')
-                  <span class="text-danger">{{$message}}</span>
-              @enderror
                   </div>
-                  <div class="col-md-12">
+                  <div class="col-md-6">
                     <div class="form-group">
-                      <label for="example-text-input" class="form-control-label">Email Address</label>
-                      <input type="text" name="contact_email" class="form-control">
+                      <label for="example-text-input" class="form-control-label">Phone number</label>
+                      <input type="text" name="contact_phone" class="form-control" value="{{$client->contact_phone}}">
                      
                     </div>
-                    @error('contact')
-                  <span class="text-danger">{{$message}}</span>
-              @enderror
-                  </div>
-                
-                <div class="col-md-12">
-                  <div class="form-group">
-                    <label for="example-text-input" class="form-control-label">Solution</label>
-                    <textarea class="form-control" name="solution"></textarea>
                    
                   </div>
-                  @error('solution')
-                  <span class="text-danger">{{$message}}</span>
-              @enderror
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="example-text-input" class="form-control-label">Email Address</label>
+                      <input type="text" name="contact_email" class="form-control" value="{{$client->contact_email}}">
+                     
+                    </div>
+                   
+                  </div>
+                
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="example-text-input" class="form-control-label">Solution</label>
+                    <textarea class="form-control" name="solution">{{$client->solution}}</textarea>
+                   
+                  </div>
+                 
                 </div>
                 
                 
@@ -149,7 +151,7 @@
                 
                 
                 
-                <div class="col-md-12">
+                <div class="col-md-5">
                   <div class="form-group">
                                       
                     <input type="submit" name="submit" class="btn btn-lg btn-danger" value="Update Information">
@@ -157,8 +159,8 @@
                 </div>
               </div>
             </form>
-            
-          </div>
+               
+             
         </div>
       </div>
     </div>

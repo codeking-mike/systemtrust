@@ -6,16 +6,31 @@
       <div class="col-md-8">
         <div class="card">
           <div class="card-header pb-0">
+            <x-back-card />
             <div class="d-flex align-items-center">
-              <p class="mb-0">Add Machine</p>
+              
+              <p class="mb-0">Add Non-Solar Site</p>
               
             </div>
           </div>
           <div class="card-body">
-           
+           <x-flash-message />
             <form action="/machine" method="post">
                 @csrf
               <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                      <label for="" class="form-control-lable">Client Name</label>
+                      <select name='client_name' class="form-control">
+                        @foreach ($clients as $client)
+                          
+                           <option>{{$client->client_name}}</option>  
+                          
+                        @endforeach
+                      </select>
+
+                  </div>
+              </div>
                 <div class="col-md-12">
                     <div class="form-group">
                         <label for="" class="form-control-lable">Branch Code</label>
