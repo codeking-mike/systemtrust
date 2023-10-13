@@ -8,14 +8,14 @@
           <x-back-card />
           <div class="card-header pb-0">
             <div class="d-flex align-items-center">
-              <p class="mb-0">Update Machine Data or View <a href='#history'>Maintenance History</a></p>
+              <p class="mb-0">Update Machine Data or View <a href='#history' class="text-success font-bold">Maintenance History</a></p>
               
             </div>
           </div>
           <div class="card-body">
             @if (session()->has('message'))
               
-            <p class="text-warning">{{session('message')}}</p>
+            <p class="text-success">{{session('message')}}</p>
             @endif
             <form action="/machine/{{$machine->id}}" method="post">
                 @csrf
@@ -63,14 +63,7 @@
                     </div>
                     
                 </div>
-                <div class="col-md-12">
-                    <div class="form-group">
-                      <label for="example-text-input" class="form-control-label">FSE</label>
-                      <input type="text" name="fse_assigned" class="form-control" value="{{$machine->fse_assigned}}" readonly>
                 
-                     
-                    </div>
-                  </div>
                   <div class="col-md-12 row">
                     <div class="form-group col-md-5">
                         <label for="example-text-input" class="form-control-label">Inverter Brand</label>

@@ -97,7 +97,7 @@ use App\Models\Upsmachine;
     </div>
     <div class="col-md-3 mb-xl-0 mb-4">
       <div class="card">
-        
+       <a href="/delisted">
         <div class="card-body p-3">
           <div class="row">
             <div class="col-8">
@@ -116,7 +116,7 @@ use App\Models\Upsmachine;
             </div>
           </div>
         </div>
-      
+      </a>
       </div>
     </div>
   </div>
@@ -143,7 +143,7 @@ use App\Models\Upsmachine;
           <div class="card-body px-0 pt-0 pb-2">
             @if (session()->has('message'))
               
-            <p class="text-danger">{{session('message')}}</p>
+            <p class="text-success p-3">{{session('message')}}</p>
             @endif
             <div class="table-responsive p-0">
               <table class="table align-items-center mb-0" id="searchTable">

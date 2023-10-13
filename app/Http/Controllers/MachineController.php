@@ -144,18 +144,18 @@ class MachineController extends Controller
             'bm_number' => ['string', 'nullable'],
             'branch_address'=> ['string', 'nullable'],
             'branch_state'=> ['string', 'nullable'],
-              'remarks'=>'required',
-              'inverter_brand'=> 'required',
-              'inverter_capacity' => 'required',
-              'number_of_inverter' =>'required',
-              'snmp_status'=>'required',
-              'battery_spec'=>'required',
-              'battery_qty'=>'required',
-              'battery_brand'=>'required',
-              'load'=>'required',
-              'date_deployed'=>'required',
-              'last_battery_replaced'=>'required',
-              'inverter_deployed_by'=>'required'
+              'remarks'=>['string', 'nullable'],
+              'inverter_brand'=> ['string', 'nullable'],
+              'inverter_capacity' => ['string', 'nullable'],
+              'number_of_inverter' =>['string', 'nullable'],
+              'snmp_status'=>['string', 'nullable'],
+              'battery_spec'=>['string', 'nullable'],
+              'battery_qty'=>['string', 'nullable'],
+              'battery_brand'=>['string', 'nullable'],
+              'load'=>['string', 'nullable'],
+              'date_deployed'=>['string', 'nullable'],
+              'last_battery_replaced'=>['string', 'nullable'],
+              'inverter_deployed_by'=>['string', 'nullable']
 
         ]);
         $machine->branch_code = $formFields['branch_code'];
