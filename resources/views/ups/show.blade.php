@@ -23,7 +23,7 @@
                 <div class="col-md-12">
                     <div class="form-group">
                         <label for="" class="form-control-lable">Branch Code</label>
-                        <input type="text" name="branch_code" class="form-control" value="{{$ups->branch_code}}" readonly>
+                        <input type="text" name="branch_code" class="form-control" value="{{$ups->branch_code}}">
 
                     </div>
                 </div>
@@ -31,13 +31,13 @@
                     <div class="form-group col-md-5">
                         <label for="example-text-input" class="form-control-label">BM Name</label>
                         
-                        <input type="text" name="bm_name" class="form-control" value="{{$ups->bm_name}}" readonly>
+                        <input type="text" name="bm_name" class="form-control" value="{{$ups->bm_name}}">
                         
                     </div>
                     <div class="form-group col-md-5">
                       <label for="example-text-input" class="form-control-label">BM Number</label>
                       
-                      <input type="text" name="bm_number" class="form-control" value="{{$ups->bm_number}}" readonly>
+                      <input type="text" name="bm_number" class="form-control" value="{{$ups->bm_number}}" >
                      
                     </div>
                     
@@ -46,20 +46,20 @@
                     <div class="form-group col-md-5">
                         <label for="example-text-input" class="form-control-label">Branch Location</label>
                         
-                        <input type="text" name="branch_address" class="form-control" value="{{$ups->branch_address}}" readonly>
+                        <input type="text" name="branch_address" class="form-control" value="{{$ups->branch_address}}">
                        
                     </div>
                     <div class="form-group col-md-5">
                       <label for="example-text-input" class="form-control-label">State</label>
                       
-                      <input type="text" name="branch_state" class="form-control" value="{{$ups->branch_state}}" readonly>
+                      <input type="text" name="branch_state" class="form-control" value="{{$ups->branch_state}}">
                       
                     </div>
                     
                 </div>
                 <div class="col-md-12">
                     <div class="form-group col-md-5">
-                        <input type="text" name="fse_assigned" class="form-control" value="{{$ups->fse_assigned}}" readonly>
+                        <input type="text" name="fse_assigned" class="form-control" value="{{$ups->fse_assigned}}">
                         <input type="hidden" name="remarks" value="nil" />
                     </div>
                     
