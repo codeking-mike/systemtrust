@@ -6,6 +6,7 @@
     <div class="col-md-8">
       <div class="card">
         <div class="card-header pb-0">
+          <x-back-card />
           <div class="d-flex align-items-center">
             <p class="mb-0">Edit Profile</p>
             <a href="/settings/{{$emp->id}}" class="btn btn-primary btn-sm ms-auto">Change Password</a>
@@ -14,7 +15,7 @@
         <div class="card-body">
           @if (session()->has('message'))
               
-          <p class="text-warning">{{session('message')}}</p>
+          <p class="text-success">{{session('message')}}</p>
           @endif
           <form action="/update/{{$emp->id}}" method="POST" enctype="multipart/form-data">
             @csrf
@@ -42,7 +43,7 @@
               <div class="form-group">
                 <label for="example-text-input" class="form-control-label">Date of Birth</label>
                 @unless ($emp['staff_dob'] == '')
-                <input class="form-control" name="staff_dob" type="date" value="{{$emp['staff_dob']}}">
+                <input class="form-control" name="staff_dob" type="date" value="{{$emp->staff_dob}}">
                 @else
                 <input class="form-control" name="staff_dob" type="date" value="">
              
@@ -63,7 +64,7 @@
                   <option>Married</option>
                 </select>
                   @else 
-                  <input class="form-control" name="marital_status" type="text" value="{{$emp['marital_status']}}">
+                  <input class="form-control" name="marital_status" type="text" value="{{$emp->marital_status}}">
                 @endif
                 
               </div>
@@ -71,7 +72,7 @@
             <div class="col-md-6">
               <div class="form-group">
                 <label for="example-text-input" class="form-control-label">Wedding Anniversary</label>
-                <input class="form-control" name="anniversary" type="text" value="{{$emp['anniversary']}}">
+                <input class="form-control" name="anniversary" type="text" value="{{$emp->anniversary}}">
               </div>
             </div>
           </div>
@@ -81,25 +82,25 @@
             <div class="col-md-12">
               <div class="form-group">
                 <label for="example-text-input" class="form-control-label">Address</label>
-                <input class="form-control" type="text" name="addresss" value="{{$emp->address}}">
+                <input class="form-control" type="text" name="address" value="{{$emp->address}}">
               </div>
             </div>
             <div class="col-md-12">
               <div class="form-group">
                 <label for="example-text-input" class="form-control-label">Phone number</label>
-                <input class="form-control" name="phone" type="text" value="{{$emp['phone']}}">
+                <input class="form-control" name="phone" type="text" value="{{$emp->phone}}">
               </div>
             </div>
             <div class="col-md-12">
               <div class="form-group">
                 <label for="example-text-input" class="form-control-label">CUG</label>
-                <input class="form-control" name="phone" type="text" value="{{$emp['cug']}}">
+                <input class="form-control" name="cug" type="text" value="{{$emp->cug}}">
               </div>
             </div>
             <div class="col-md-12">
               <div class="form-group">
                 <label for="example-text-input" class="form-control-label">Employment Date</label>
-                <input class="form-control" name="emp_date" type="text" value="{{$emp['emp_date']}}">
+                <input class="form-control" name="emp_date" type="text" value="{{$emp->emp_date}}">
               </div>
             </div>
             

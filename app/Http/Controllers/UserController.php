@@ -83,12 +83,13 @@ class UserController extends Controller
             'name'=> ['required', 'min:3' ],
             'email'=> ['required', 'email'],
             'phone'=> ['required', 'min:11' ],
-            'address'=>['nullable', 'string'],
-            'staff_dob'=> ['nullable', 'string'],
-            'marital_status'=>['nullable', 'string'],
-            'anniversary'=>['nullable', 'string'],
+            'address'=>['string', 'nullable'],
+            'staff_dob'=> ['string', 'nullable'],
+            'marital_status'=>['string', 'nullable'],
+            'anniversary'=>['string', 'nullable'],
             'alias'=> ['string', 'nullable' ],
-            'cug'=> ['string', 'nullable' ]
+            'cug'=> ['string', 'nullable' ],
+            'emp_date'=> ['string', 'nullable' ]
 
         ]);
 
@@ -100,14 +101,17 @@ class UserController extends Controller
         }
 
         //update user 
-        /*
+       /* 
         $user->name = $formFields['name'];
         $user->email = $formFields['email'];
         $user->phone = $formFields['phone'];
         $user->address = $formFields['address'];
         $user->staff_dob = $formFields['staff_dob'];
         $user->marital_status = $formFields['marital_status'];
-        $user->anniversary = $formFields['anniversary']; */
+        $user->anniversary = $formFields['anniversary']; 
+        $user->alias = $formFields['alias']; 
+        $user->cug = $formFields['cug'];
+        $user->emp_date = $formFields['emp_date'];  */
         
 
         $user->update($formFields);

@@ -67,7 +67,6 @@ Route::get('/profile/{id}', [UserController::class, 'profile'])->middleware('aut
 //submit form post data to create new user
 Route::post('/users', [UserController::class, 'store']);
 //update user details 
-Route::put('/users/{user}', [UserController::class, 'update']);
 Route::put('/update/{id}', [UserController::class, 'update']);
 Route::put('/users/password/{id}', [UserController::class, 'password']);
 //user logout
