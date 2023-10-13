@@ -207,9 +207,7 @@
           </div>
           <div class="card-footer">
             <div class="row tex-muted">
-              <p class="card-text">
-                {{$mymachines->links()}}
-              </p>
+              
              
             </div>
            
