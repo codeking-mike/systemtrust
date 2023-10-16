@@ -34,7 +34,7 @@ class NotificationController extends Controller
         ]);
   if($formData['receiver'] == 'all'){
     
-    $receiver = 'team@systemtrustng.com';
+    $receiver = 'michael@systemtrustng.com';
     $subject = "New Notification";
     $body = $formData['message'];
     $sender = $formData['sender'];
