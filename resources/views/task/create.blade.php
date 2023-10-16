@@ -5,6 +5,7 @@
     <div class="row">
       <div class="col-md-8">
         <div class="card">
+          <x-back-card />
           <div class="card-header pb-0">
             <div class="d-flex align-items-center">
               <p class="mb-0">Create Tasks</p>
@@ -84,7 +85,7 @@
                     <select name='fse_assigned' class="form-control">
                       @foreach ($users as $fse)
                          @if ($fse->position == 'engineer')
-                         <option>{{$fse->name}}</option>  
+                         <option>{{$fse->alias}}</option>  
                          @endif 
                       @endforeach
                     </select>

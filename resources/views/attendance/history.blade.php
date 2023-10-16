@@ -9,7 +9,7 @@
         <div class="card mb-4">
           <div class="card-header pb-0">
             <h6>Attendance History</h6>
-            <p class="card-text">Your attendance record for the past 3o days</p>
+            <p class="card-text">Your attendance record for the past 30 days</p>
           </div>
           <div class="card-body px-0 pt-0 pb-2">
             <div class="table-responsive p-0">

@@ -60,7 +60,7 @@ class TaskController extends Controller
 
         return view('task.list', [
             'title'=>'View Task',
-            'task'=>Task::where('fse_assigned', auth()->user()->name)
+            'task'=>Task::where('fse_assigned', auth()->user()->alias)
             ->where('task_status', 'in progress')->get()
             
 
@@ -111,7 +111,7 @@ class TaskController extends Controller
 
         ]);
 
-        $email = DB::select('SELECT email FROM users WHERE name = ?' , [$formFields['fse_assigned']]);
+        $email = DB::select('SELECT email FROM users WHERE alias = ?' , [$formFields['fse_assigned']]);
         
         //sendmail to user on task assignment.
 
@@ -122,7 +122,8 @@ class TaskController extends Controller
 
 
 
-        Mail::to($email)->send(new sendreport($subject, $body, $formFields['fse_assigned']));
+       // Mail::to($email)->send(new sendreport($subject, $body, $formFields['fse_assigned']));
+       Mail::to($email)->send(new sendreport($subject, $body, $formFields['fse_assigned'] ));
 
         Task::create($formFields);
 
@@ -156,30 +157,35 @@ class TaskController extends Controller
         if($request->hasFile('erf')){
             $formFields['erf'] = $request->file('erf')->store('userimages', 'public');
         }
+        if($request->hasFile('site')){
+            $formFields['site'] = $request->file('site')->store('userimages', 'public');
+        }
         //create user 
-
+        $task->site_param = $formFields['site_param'];
+        $task->machine_details = $formFields['machine_details'];
+        $task->diagnosis = $formFields['diagnosis'];
         $task->remarks = $formFields['remarks'];
         $task->jcc = $formFields['jcc'];
         $task->erf = $formFields['erf'];
+        $task->site = $formFields['site'];
         $task->task_status = $formFields['task_status'];
 
         $task->update();
 
 
  //sendmail to support
- $subject = "Job Report";
+ $subject = "Task Report";
  $body .= 'Report for ' .$task->task_type. ' at '.$task->location.' ';
- $body .= 'Details: '. $task->task_description;
- $details = $formFields['remarks'];
-
-
-
-
- Mail::to('support@systemtrustng.com')->send(new notifyUser($subject, $body, auth()->user()->name, $details));
+ $machine = $formFields['machine_details'];
+ $site = $formFields['site_param'];
+ $diagnosis = $formFields['diagnosis'];
+ $remarks = $formFields['remarks'];
+ 
+ Mail::to('support@systemtrustng.com')->cc(auth()->user()->email)->send(new notifyUser($subject, $body, $machine, $site, $diagnosis, $remarks, auth()->user()->name));
  
         return back()->with('message', 'Report sent successfully!');
 
-    }
+  }
 
     public function delete($id){
         Task::where('id', $id)->delete();

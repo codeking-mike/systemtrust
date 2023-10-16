@@ -23,7 +23,7 @@
                 <div class="col-md-12">
                   <div class="form-group">
                     <label for="example-text-input" class="form-control-label">Client Name</label>
-                    <input type="text" name="client_name" class="form-control" value="{{$task->client_name}}" />
+                    <input type="text" name="client_name" class="form-control" value="{{$task->client_name}}" readonly />
                    
                   </div>
                 </div>
@@ -80,6 +80,36 @@
               @enderror
                 </div>
                 <div class="col-md-12">
+                  <div class="form-group">
+                    <label for="example-text-input" class="form-control-label">Machine Details(Type, Load, batteries etc.)</label>
+                    <textarea class="form-control" name="machine_details" cols="30" rows="10">{{$task->machine_details}}</textarea>
+                   
+                  </div>
+                  @error('site_param')
+                  <span class="text-danger">{{$message}}</span>
+              @enderror
+                </div>
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label for="example-text-input" class="form-control-label">Site Parameters</label>
+                    <textarea class="form-control" name="site_param" cols="30" rows="10">{{$task->site_param}}</textarea>
+                   
+                  </div>
+                  @error('site_param')
+                  <span class="text-danger">{{$message}}</span>
+              @enderror
+                </div>
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label for="example-text-input" class="form-control-label">Diagnosis and Findings</label>
+                    <textarea class="form-control" name="diagnosis" cols="30" rows="10">{{$task->diagnosis}}</textarea>
+                   
+                  </div>
+                  @error('diagnosis')
+                  <span class="text-danger">{{$message}}</span>
+              @enderror
+                </div>
+                <div class="col-md-12">
                     <div class="form-group">
                       <label for="example-text-input" class="form-control-label">Remarks/Observation/Recommendation</label>
                       <textarea class="form-control" name="remarks">{{$task->remarks}}</textarea>
@@ -107,6 +137,16 @@
                     <div class="col-md-4">
                         <div class="card">
                           <img class="card-img-top" src="/storage/{{$task->erf}}" alt="">
+                        </div>
+                      </div>
+                   
+                  </div>
+                  <div class="form-group">
+                    <label for="example-text-input" class="form-control-label">Site Image</label>
+                    <input type="file" name="site" class="form-control" />
+                    <div class="col-md-4">
+                        <div class="card">
+                          <img class="card-img-top" src="/storage/{{$task->site}}" alt="">
                         </div>
                       </div>
                    

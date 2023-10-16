@@ -107,10 +107,69 @@ class JobreportController extends Controller
         unset($formFields['_token']);
         unset($formFields['_method']);
         unset($formFields['submit']);
-         $surge = $formFields['surge'];
-         $environs = $formFields['environs'];
-         $cabling = $formFields['cabling'];
-        $remarks = <<<IDENTIFIER
+         
+        
+
+ 
+ //sendmail to support
+$machine = 'Inverter';
+ $brand=$formFields['equipment_brand'];
+ $capacity= $formFields['equipment_capacity'];
+ $load= $formFields['load_description'];
+ $gen= $formFields['genrun_time']. " ". $formFields['phcnrun_time'];
+ $input = $formFields['siteinput_voltage'];
+ $output =$formFields['siteoutput_voltage'];
+ $batteries =$formFields['battery_qty'];
+ $battery_brand =$formFields['battery_brand'];
+ $frequency= $formFields['site_frequency'];
+ $avr=$formFields['avr_brand'];
+ $avr_capacity=$formFields['avr_capacity'];
+ $diagnosis = $formFields['site_diagnosis'];
+ $battery = $formFields['battery_voltage_reading'];
+ $replaced = $formFields['last_battery_replaced'];
+ $surge = $formFields['surge'];
+$environs = $formFields['environs'];
+$cabling = $formFields['cabling'];
+$causes = $formFields['causes_of_damage'];
+
+
+$subject = "Report For ". $formFields['client_name']. " ".  $formFields['site_address'];
+$body .= $formFields['job_description'];
+
+$machine_details = <<<IDENTIFIER
+
+Machine: $machine $brand $capacity
+Load:  $load
+Batteries: $batteries of $battery_brand batteries
+Last Battery Replaced: $replaced
+
+IDENTIFIER;
+
+$site = <<<HEREDOC
+Input Voltage:   $input
+Output Voltage:  $output
+Frequency:   $frequency
+AVR: $avr $avr_capacity
+Cabling: $cabling
+Surge Protection: $surge
+
+Battery Voltage Readings:  $battery
+
+HEREDOC;
+
+$diagnosis = <<<HEREDOC
+Site Diagnosis:   $input
+Causes:  $causes
+Battery Voltage Readings:  $battery
+
+HEREDOC;
+
+$recommendations = $formFields['recommendations'];
+  
+//send mail to support and copy user
+Mail::to('support@systemtrustng.com')->cc(auth()->user()->email)->send(new notifyUser($subject, $body, $machine_details, $site, $diagnosis, $recommendations, auth()->user()->name));
+ 
+$remarks = <<<IDENTIFIER
 
         Surge Available: $surge
         Site Environs: $environs
@@ -123,49 +182,10 @@ class JobreportController extends Controller
         ]);
         
        Jobreport::create($formFields);
-
- //sendmail to support
- //sendmail to support
- $subject = "Report For ". $formFields['client_name']. " ".  $formFields['site_address'];
- $body .= $formFields['job_description'];
-
- $machine = 'Inverter';
- $brand=$formFields['equipment_brand'];
- $capacity= $formFields['equipment_capacity'];
- $load= $formFields['load_description'];
- $gen= $formFields['genrun_time']. " ". $formFields['phcnrun_time'];
- $input = $formFields['siteinput_voltage'];
- $output =$formFields['siteoutput_voltage'];
- $frequency= $formFields['site_frequency'];
- $avr=$formFields['avr_brand'];
- $avr_capacity=$formFields['avr_capacity'];
- $diagnosis = $formFields['site_diagnosis'];
- $battery = $formFields['battery_voltage_reading'];
-
-
-$details = <<<IDENTIFIER
-
-Machine: $machine $brand $capacity
-
-Gen/Grid Run Time:  $gen
-Input Voltage:   $input
-Output Voltage:  $output
-Frequency:   $frequency
-AVR: $avr $avr_capacity
-
-Site Diagnosis: $diagnosis
-
-Battery Voltage Readings:  $battery
-
-IDENTIFIER;
-  
-//send mail to support and copy user
- Mail::to('support@systemtrustng.com')->cc(auth()->user()->email)->send(new notifyUser($subject, $body, auth()->user()->name, $details));
- 
- 
         return back()->with('message', 'Report submitted successfully!');
+    
 
-    }
+}
 
 //create nonsolar report
 public function store2(Request $request){
@@ -187,10 +207,66 @@ public function store2(Request $request){
         unset($formFields['_token']);
         unset($formFields['_method']);
         unset($formFields['submit']);
-         $surge = $formFields['surge'];
-         $environs = $formFields['environs'];
-         $cabling = $formFields['cabling'];
-        $remarks = <<<IDENTIFIER
+ //sendmail to support
+ //sendmail to support
+ $machine = 'Inverter';
+ $brand=$formFields['equipment_brand'];
+ $capacity= $formFields['equipment_capacity'];
+ $load= $formFields['load_description'];
+ $gen= $formFields['genrun_time']. " ". $formFields['phcnrun_time'];
+ $input = $formFields['siteinput_voltage'];
+ $output =$formFields['siteoutput_voltage'];
+ $batteries =$formFields['battery_qty'];
+ $battery_brand =$formFields['battery_brand'];
+ $frequency= $formFields['site_frequency'];
+ $avr=$formFields['avr_brand'];
+ $avr_capacity=$formFields['avr_capacity'];
+ $diagnosis = $formFields['site_diagnosis'];
+ $battery = $formFields['battery_voltage_reading'];
+ $replaced = $formFields['last_battery_replaced'];
+ $surge = $formFields['surge'];
+$environs = $formFields['environs'];
+$cabling = $formFields['cabling'];
+$causes = $formFields['causes_of_damage'];
+
+
+$subject = "Report For ". $formFields['client_name']. " ".  $formFields['site_address'];
+$body .= $formFields['job_description'];
+
+$machine_details = <<<IDENTIFIER
+
+Machine: $machine $brand $capacity
+Load:  $load
+Batteries: $batteries of $battery_brand batteries
+Last Battery Replaced: $replaced
+
+IDENTIFIER;
+
+$site = <<<HEREDOC
+Input Voltage:   $input
+Output Voltage:  $output
+Frequency:   $frequency
+AVR: $avr $avr_capacity
+Cabling: $cabling
+Surge Protection: $surge
+
+Battery Voltage Readings:  $battery
+
+HEREDOC;
+
+$diagnosis = <<<HEREDOC
+Site Diagnosis:   $input
+Causes:  $causes
+Battery Voltage Readings:  $battery
+
+HEREDOC;
+
+$recommendations = $formFields['recommendations'];
+  
+//send mail to support and copy user
+Mail::to('support@systemtrustng.com')->cc(auth()->user()->email)->send(new notifyUser($subject, $body, $machine_details, $site, $diagnosis, $recommendations, auth()->user()->name));
+ 
+$remarks = <<<IDENTIFIER
 
         Surge Available: $surge
         Site Environs: $environs
@@ -203,53 +279,16 @@ public function store2(Request $request){
         ]);
         
        Jobreport::create($formFields);
-
- //sendmail to support
- //sendmail to support
- $subject = "Report For ". $formFields['client_name']. " ".  $formFields['site_address'];
- $body .= $formFields['job_description'];
-
- $machine = 'Inverter';
- $brand=$formFields['equipment_brand'];
- $capacity= $formFields['equipment_capacity'];
- $load= $formFields['load_description'];
- $gen= $formFields['genrun_time']. " ". $formFields['phcnrun_time'];
- $input = $formFields['siteinput_voltage'];
- $output =$formFields['siteoutput_voltage'];
- $frequency= $formFields['site_frequency'];
- $avr=$formFields['avr_brand'];
- $avr_capacity=$formFields['avr_capacity'];
- $diagnosis = $formFields['site_diagnosis'];
- $battery = $formFields['battery_voltage_reading'];
-
-
-$details = <<<IDENTIFIER
-
-Machine: $machine $brand $capacity
-
-Gen/Grid Run Time:  $gen
-Input Voltage:   $input
-Output Voltage:  $output
-Frequency:   $frequency
-AVR: $avr $avr_capacity
-
-Site Diagnosis: $diagnosis
-
-Battery Voltage Readings:  $battery
-
-IDENTIFIER;
-  
-//send mail to support and copy user
- Mail::to('support@systemtrustng.com')->cc(auth()->user()->email)->send(new notifyUser($subject, $body, auth()->user()->name, $details));
- 
- 
         return back()->with('message', 'Report submitted successfully!');
+    
 
-    }
 
-    public function store3(Request $request){
 
-        $subject=''; $body=''; $details='';
+}
+
+public function store3(Request $request){
+
+        $subject=''; $body=''; 
         
             $formFields = $request->all();
             //upload profilepic
@@ -284,41 +323,58 @@ IDENTIFIER;
     
      //sendmail to support
      //sendmail to support
-     $subject = "Report For ". $formFields['client_name']. " ".  $formFields['site_address'];
-     $body .= $formFields['job_description'];
+     
     
      $machine = 'UPS';
      $brand=$formFields['equipment_brand'];
      $capacity= $formFields['equipment_capacity'];
      $load= $formFields['load_description'];
-     $gen= $formFields['genrun_time']. " ". $formFields['phcnrun_time'];
      $input = $formFields['siteinput_voltage'];
      $output =$formFields['siteoutput_voltage'];
+     $batteries =$formFields['battery_qty'];
+     $battery_brand =$formFields['battery_brand'];
      $frequency= $formFields['site_frequency'];
      $avr=$formFields['avr_brand'];
      $avr_capacity=$formFields['avr_capacity'];
      $diagnosis = $formFields['site_diagnosis'];
      $battery = $formFields['battery_voltage_reading'];
+     $surge = $formFields['surge'];
+    $environs = $formFields['environs'];
+    $cabling = $formFields['cabling'];
+    $causes = $formFields['causes_of_damage'];
     
     
-    $details = <<<IDENTIFIER
-    
-    Machine: $machine $brand $capacity
-    
-    Gen/Grid Run Time:  $gen
-    Input Voltage:   $input
-    Output Voltage:  $output
-    Frequency:   $frequency
-    AVR: $avr $avr_capacity
-    
-    Site Diagnosis: $diagnosis
-    
-    Battery Voltage Readings:  $battery
-    
-    IDENTIFIER;
-      
-    //send mail to support and copy user
-     Mail::to('support@systemtrustng.com')->cc(auth()->user()->email)->send(new notifyUser($subject, $body, auth()->user()->name, $details));
+     $machine_details = <<<IDENTIFIER
+
+     Machine: $machine $brand $capacity
+     Load:  $load
+     Batteries: $batteries of $battery_brand batteries
+     
+     IDENTIFIER;
+     
+     $site = <<<HEREDOC
+     Input Voltage:   $input
+     Output Voltage:  $output
+     Frequency:   $frequency
+     AVR: $avr $avr_capacity
+     Cabling: $cabling
+     Surge Protection: $surge
+     
+     Battery Voltage Readings:  $battery
+     
+     HEREDOC;
+     
+     $diagnosis = <<<HEREDOC
+     Site Diagnosis:   $diagnosis
+     Causes:  $causes
+     Battery Voltage Readings:  $battery
+     
+     HEREDOC;
+     
+     $recommendations = $formFields['recommendations'];
+       
+     //send mail to support and copy user
+     Mail::to('support@systemtrustng.com')->cc(auth()->user()->email)->send(new notifyUser($subject, $body, $machine_details, $site, $diagnosis, $recommendations, auth()->user()->name));
      
      
             return back()->with('message', 'Report submitted successfully!');

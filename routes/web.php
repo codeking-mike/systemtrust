@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\LeaveController;
+use App\Http\Controllers\NotificationController;
 use App\Models\Task;
 use App\Models\User;
 use App\Models\Brand;
@@ -188,6 +189,12 @@ Route::post('/solarmachines', [SolarmachineController::class, 'store']);
 Route::post('/ups', [UpsController::class, 'store']);
 
 Route::get('/sendmail', [SendMail::class, 'index']);
+
+//notifications
+Route::get('/notifications', [NotificationController::class, 'index']);
+Route::get('/notifications/create', [NotificationController::class, 'create']);
+Route::post('/notice', [NotificationController::class, 'store']);
+
 
 
 

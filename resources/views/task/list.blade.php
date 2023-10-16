@@ -59,7 +59,7 @@
                           
                       </td>
                       <td class="align-middle">
-                         <a class="btn btn-success" href="/submittask/{{$tsk['id']}}">Submit Report</a>
+                         <a class="btn btn-sm btn-primary" href="/submittask/{{$tsk['id']}}">Submit Report</a>
                         
                       </td>
                     </tr>

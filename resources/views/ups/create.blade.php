@@ -81,7 +81,7 @@
                       <select name='fse_assigned' class="form-control">
                         @foreach ($users as $fse)
                            @if ($fse->position == 'engineer')
-                           <option>{{$fse->name}}</option>  
+                           <option>{{$fse->alias}}</option>  
                            @endif 
                         @endforeach
                       </select>

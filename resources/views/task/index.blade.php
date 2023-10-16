@@ -10,8 +10,8 @@
               <h6>Pending Tasks</h6>
               <div class="d-flex align-items-center">
                 
-                <a class=" btn btn-primary btn-sm ms-auto p-2" href="/tasks/create">Create</a>
-                <a class=" btn btn-danger btn-sm ms-auto p-2" href="/tasks/completed">View Completed</a>
+                <a class=" btn btn-primary btn-sm ms-auto" href="/tasks/create">Create</a>
+                <a class=" btn btn-danger btn-sm ms-auto" href="/tasks/completed">View Completed</a>
               
               </div>
              
@@ -64,8 +64,8 @@
                           
                       </td>
                       <td class="align-middle">
-                         <a class="btn btn-success" href="/taskview/{{$tsk['id']}}">View Task</a> / 
-                         <a class="btn btn-danger" href="/deletetask/{{$tsk['id']}}">Delete</a>
+                         <a class="btn btn-sm btn-primary" href="/taskview/{{$tsk['id']}}">View Task</a> / 
+                         <a class="btn btn-sm btn-danger" href="/deletetask/{{$tsk['id']}}">Delete</a>
                         
                       </td>
                     </tr>

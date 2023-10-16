@@ -9,24 +9,21 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class notifyUser extends Mailable
+class sendnotice extends Mailable
 {
     use Queueable, SerializesModels;
 
     /**
      * Create a new message instance.
      */
-    public $subject, $body, $machine, $site, $diagnosis, $remarks, $sender;
-    public function __construct($subject, $body, $machine, $site, $diagnosis, $remarks, $sender)
+
+     public $subject, $body, $receiver, $sender;
+    public function __construct($subject, $body, $receiver, $sender)
     {
         $this->subject = $subject;
         $this->body = $body;
-        $this->machine = $machine;
-        $this->site = $site;
-        $this->diagnosis = $diagnosis;
-        $this->remarks = $remarks;
-        $this->sender = $sender;
-        
+        $this->receiver = $receiver;
+        $this->receiver = $receiver;
     }
 
     /**
@@ -35,7 +32,7 @@ class notifyUser extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: $this->subject,
+            subject: $this->subject
         );
     }
 
@@ -45,7 +42,7 @@ class notifyUser extends Mailable
     public function content(): Content
     {
         return new Content(
-            markdown: 'mails.notify',
+            markdown: 'mail.sendnotice',
         );
     }
 
