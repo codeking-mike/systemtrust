@@ -9,8 +9,8 @@
         <div class="card mb-4">
             <x-back-card />
           <div class="card-header pb-0">
-            <a class="btn btn-success btn-sm " href="https://meet.google.com/icg-aicy-irc">Join Review Meeting</a>
-            <a class="btn btn-primary btn-sm " href="https://systemtrustng.com">Visit Website</a>
+            <a class="btn btn-success btn-sm " href="https://meet.google.com/icg-aicy-irc">Join Meeting</a>
+            
             <a class="btn btn-info btn-sm " href="/notifications/create">Post Notice</a>
 
             <h5>Notifications</h5>
