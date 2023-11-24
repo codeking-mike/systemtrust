@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Mail;
+use Exception;
 use Carbon\Carbon;
 use App\Models\Task;
 use App\Models\User;
@@ -29,7 +30,8 @@ class TaskController extends Controller
         $task = Task::find($id);
         return view('task.show', [
             'title'=>'View Task',
-            'task'=>$task
+            'task'=>$task,
+            'users'=>User::latest()->get()
             
 
         ]);
@@ -121,13 +123,41 @@ class TaskController extends Controller
     
 
 
-
+        Task::create($formFields);
        // Mail::to($email)->send(new sendreport($subject, $body, $formFields['fse_assigned']));
        Mail::to($email)->send(new sendreport($subject, $body, $formFields['fse_assigned'] ));
+    
+       //send whatsapp message
+        $twilioSid = config('app.twilio_sid');
+        $twilioToken = config('app.twilio_auth_token');
+        $twl = [
+            'sid'=>  $twilioSid,
+            'token'=> $twilioToken
+        ];
+        $twilioWhatsAppNumber = config('app.twilio_whatsapp_number');
+        $recipientNumber = 'whatsapp:+2348167440736'; // Replace with the recipient's phone number in WhatsApp format (e.g., "whatsapp:+1234567890")
+        $message = "Hello from Twilio WhatsApp API in Laravel! 🚀";
 
-        Task::create($formFields);
+        $twilio = new Client($twl);
 
-        return redirect('/tasks')->with('message', 'Task Created Successfully!');
+        try {
+            $twilio->messages->create(
+                $recipientNumber,
+                [
+                    "from" => $twilioWhatsAppNumber,
+                    "body" => $message,
+                ]
+            );
+
+            return response()->json(['message' => 'WhatsApp message sent successfully']);
+        } catch (Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+
+
+        
+
+     return redirect('/tasks')->with('message', 'Task Created Successfully!');
 
     }
 

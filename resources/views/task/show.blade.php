@@ -92,7 +92,17 @@
                 <div class="col-md-12">
                   <div class="form-group">
                     <label for="example-text-input" class="form-control-label">Assigned FSE</label>
-                    <input type="text" name="fse_assigned" class="form-control" value="{{$task->fse_assigned}}" />
+                    <select name='fse_assigned' class="form-control">
+                      @foreach ($users as $fse)
+                         @if ($fse->position == 'engineer')
+                              @if ($fse->alias == $task->fse_assigned)
+                              <option selected>{{$task->fse_assigned}}</option>   
+                              @endif
+                         <option>{{$fse->alias}}</option>  
+                         @endif 
+                      @endforeach
+                    </select>
+                    
                    
                   </div>
                 </div>
@@ -122,6 +132,30 @@
                           </select>
                          
                     </div>
+                </div>
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label for="" class="form-contol-lable">Machine Details</label>
+                    <textarea name="machine_details" id="" cols="7" rows="5" class="form-control">
+                      {{$task->machine_details}}
+                    </textarea>
+                  </div>
+                </div>
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label for="" class="form-contol-lable">Site Parameters</label>
+                    <textarea name="site_param" id="" cols="7" rows="5" class="form-control">
+                      {{$task->site_param}}
+                    </textarea>
+                  </div>
+                </div>
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label for="" class="form-contol-lable">Diagnosis</label>
+                    <textarea name="diagnosis" id="" cols="7" rows="5" class="form-control">
+                      {{$task->diagnosis}}
+                    </textarea>
+                  </div>
                 </div>
                 <div class="col-md-12">
                   <div class="form-group">
