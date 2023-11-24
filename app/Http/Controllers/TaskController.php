@@ -127,36 +127,6 @@ class TaskController extends Controller
        // Mail::to($email)->send(new sendreport($subject, $body, $formFields['fse_assigned']));
        Mail::to($email)->send(new sendreport($subject, $body, $formFields['fse_assigned'] ));
     
-       //send whatsapp message
-        $twilioSid = config('app.twilio_sid');
-        $twilioToken = config('app.twilio_auth_token');
-        $twl = [
-            'sid'=>  $twilioSid,
-            'token'=> $twilioToken
-        ];
-        $twilioWhatsAppNumber = config('app.twilio_whatsapp_number');
-        $recipientNumber = 'whatsapp:+2348167440736'; // Replace with the recipient's phone number in WhatsApp format (e.g., "whatsapp:+1234567890")
-        $message = "Hello from Twilio WhatsApp API in Laravel! 🚀";
-
-        $twilio = new Client($twl);
-
-        try {
-            $twilio->messages->create(
-                $recipientNumber,
-                [
-                    "from" => $twilioWhatsAppNumber,
-                    "body" => $message,
-                ]
-            );
-
-            return response()->json(['message' => 'WhatsApp message sent successfully']);
-        } catch (Exception $e) {
-            return response()->json(['error' => $e->getMessage()], 500);
-        }
-
-
-        
-
      return redirect('/tasks')->with('message', 'Task Created Successfully!');
 
     }
@@ -169,7 +139,17 @@ class TaskController extends Controller
         
         $task->update();
 
-        return back()->with('message', 'Task Updated Successfully!');
+        $email = DB::select('SELECT email FROM users WHERE alias = ?' ,$request->input('fse_assigned'));
+        
+        //sendmail to user on task assignment.
+
+        $subject = "Task Assigned";
+        $body .= 'A task assigned to you has been updated.'.'Kindly login to the app to view details.';
+    
+       // Mail::to($email)->send(new sendreport($subject, $body, $formFields['fse_assigned']));
+       Mail::to($email)->send(new sendreport($subject, $body, $request->input('fse_assigned') ));
+    
+       return back()->with('message', 'Task Updated Successfully!');
 
 
     }

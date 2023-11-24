@@ -24,7 +24,7 @@
                 <div class="col-md-12 row">
                     <div class="form-group col-md-6">
                         <label for="" class="form-control-lable">Client Name</label>
-                        <input type="text" name="client_name" class="form-control" value="{{$machine->client_name}}" readonly>
+                        <input type="text" name="client_name" class="form-control" value="{{$machine->client_name}}">
 
                     </div>
                     <div class="form-group">
