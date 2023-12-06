@@ -82,7 +82,7 @@ class TaskController extends Controller
             'title'=>'Task',
             'task'=>Task::latest()->get(),
             'users'=>User::latest()->get(),
-            'clients'=>Client::latest()->get(),
+            'clients'=>Client::latest()->orderBy('client_name', 'asc')->get(),
 
         ]);
     }
@@ -102,8 +102,8 @@ class TaskController extends Controller
         $body =''; $subject='';
         $formFields = $request->validate([
               'client_name'=> 'required',
-              'branch_code'=>'required',
-              'location' => 'required',
+              'branch_code'=>['string', 'nullable'],
+              'location' =>['string', 'nullable'],
               'task_description' =>'required',
               'task_type'=>'required',
               'fse_assigned'=>'required',
